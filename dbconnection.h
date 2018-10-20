@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QString>
+#include <QMessageBox>
 
 class DBConnection
 {
@@ -16,10 +17,11 @@ public:
     void sqlDelete(QString query);
     void initializeDB();
 private:
-    QString host = "127.0.0.1";
+    QString host = "localhost";
     QString database = "task_badger";
     QString username = "badger";
     QString password = "champlain";
+    QMessageBox errorMsg;
 };
 
 #endif // DBCONNECTION_H

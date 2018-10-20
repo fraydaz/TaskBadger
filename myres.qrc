@@ -1,14 +1,12 @@
 <RCC>
-    <qresource prefix="/Images">
+    <qresource prefix="/">
         <file>Images/icons8-calendar-48.png</file>
         <file>Images/icons8-close-window-48.png</file>
+        <file>Images/icons8-edit-48.png</file>
         <file>Images/icons8-high-priority-48.png</file>
         <file>Images/icons8-plus-48.png</file>
         <file>Images/icons8-save-all-48.png</file>
-        <file>Images/icons8-input-48.png</file>
-        <file>Images/TaskBadgerLogo.png</file>
-        <file>Images/icons8-edit-48.png</file>
         <file>Images/icons8-search-48.png</file>
-        <file>Images/icons8-trash-48.png</file>
+        <file>Images/TaskBadgerLogo.png</file>
     </qresource>
 </RCC>

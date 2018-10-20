@@ -5,7 +5,6 @@
 #include <QtCore>
 #include <QtGui>
 #include <QSqlQueryModel>
-#include "createproject.h"
 #include "project.h"
 #include "dbconnection.h"
 
@@ -30,11 +29,10 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlQueryModel *model;
-    class CreateProject *NewProject;
-    class Project *ViewProjects;
+    class Project *ProjectPg;
     class DBConnection *DB;
 
-    void connectDB();
+   // void connectDB();
     void setTreeView();
     void setTableView();
 };

@@ -26,19 +26,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    createproject.cpp \
     project.cpp \
     dbconnection.cpp
 
 HEADERS += \
         mainwindow.h \
-    createproject.h \
     project.h \
     dbconnection.h
 
 FORMS += \
         mainwindow.ui \
-    createproject.ui \
     project.ui
 
 RESOURCES += \

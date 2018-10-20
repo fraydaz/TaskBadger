@@ -5,9 +5,9 @@
 #include <QWidget>
 #include "mainwindow.h"
 #include "dbconnection.h"
-#include <QSqlQueryModel>
 #include <QString>
 #include <QDateTime>
+#include <QSqlQueryModel>
 
 namespace Ui {
 class Project;
@@ -19,18 +19,27 @@ class Project : public QWidget
 
 public:
     explicit Project(QWidget *parent = 0);
+     void openNewTab();
+     void openProjects();
     ~Project();
 
-/*private slots:
+private slots:
 
-    void on_ProjCancel_clicked();
-    void on_ProjSave_clicked();*/
+    void on_editProj_clicked();
+
+    void on_newProj_clicked();
+
+    void on_deleteProj_clicked();
+
+    void on_searchProj_clicked();
+
+    void on_ProjSave_2_clicked();
+
+    void on_ProjCancel_2_clicked();
 
 private:
     Ui::Project *ui;
-  //  Ui::CreateProject *newProjectUI;
     QSqlQueryModel *model;
-    class MainWindow* mainWindowPtr;
     class DBConnection *DB;
 
     QString pName;
@@ -41,10 +50,11 @@ private:
     int pStatus;
     int pCat;
     QDateTime pDate = QDateTime::currentDateTime();
-    class Dialog *dialog;
+
 
     void populateCat();
     void populateStat();
+    void getFormInfo();
     void setCatID();
     void setStatusID();
     void insertData();

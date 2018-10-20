@@ -1,6 +1,7 @@
 #include "dbconnection.h"
 #include <QSqlError>
 #include <QDebug>
+#include <QString>
 
 DBConnection::DBConnection()
 {
@@ -14,7 +15,11 @@ DBConnection::DBConnection()
         db.setUserName(username);
         db.setPassword(password);
         if (!db.open())
-           qWarning() << "ERROR: " << db.lastError();
+        {
+            QString error = db.lastError().text();
+            errorMsg.setText(error);
+            errorMsg.show();
+        }
     }
 }
 
