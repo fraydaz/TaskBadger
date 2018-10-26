@@ -35,6 +35,15 @@ QSqlQuery DBConnection::sqlSelect(QString query)
         qDebug() << "Query Successful: " << result.lastQuery();
     return result;
 }
+
+QSqlQuery DBConnection::sqlSelect(QSqlQuery query)
+{
+    if(!query.exec())
+        qWarning() << "ERROR: " << query.lastError();
+    else
+        qDebug() << "Query Successful: " << query.lastQuery();
+    return query;
+}
 bool DBConnection::sqlInsert(QSqlQuery sql)
 {
     bool success = false;

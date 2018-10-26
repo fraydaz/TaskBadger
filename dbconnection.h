@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSqlDatabase>
+#include <QSqlDriver>
 #include <QSqlQuery>
 #include <QString>
 #include <QMessageBox>
@@ -14,6 +15,7 @@ public:
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     bool sqlInsert(QSqlQuery sql);
     QSqlQuery sqlSelect(QString query);
+    QSqlQuery sqlSelect(QSqlQuery query);
     void sqlDelete(QString query);
     void initializeDB();
 private:

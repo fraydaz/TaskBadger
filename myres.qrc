@@ -8,5 +8,11 @@
         <file>Images/icons8-save-all-48.png</file>
         <file>Images/icons8-search-48.png</file>
         <file>Images/TaskBadgerLogo.png</file>
+        <file>Images/icons8-left-48.png</file>
+        <file>Images/icons8-right-48.png</file>
+        <file>Images/icons8-available-updates-24.png</file>
+        <file>Images/icons8-home-24.png</file>
+        <file>Images/icons8-left-24.png</file>
+        <file>Images/icons8-right-24.png</file>
     </qresource>
 </RCC>
