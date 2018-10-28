@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>830</width>
-    <height>573</height>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -233,7 +233,7 @@
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QTableView" name="tableView_3"/>
+           <widget class="QTableView" name="projectsView"/>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -251,7 +251,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="editProj_2">
+             <widget class="QPushButton" name="editProj">
               <property name="text">
                <string>Edit</string>
               </property>
@@ -262,7 +262,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="newProj_2">
+             <widget class="QPushButton" name="newProj">
               <property name="text">
                <string>New</string>
               </property>
@@ -273,7 +273,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="deleteProj_2">
+             <widget class="QPushButton" name="deleteProj">
               <property name="text">
                <string>Delete</string>
               </property>
@@ -284,7 +284,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="searchProj_2">
+             <widget class="QPushButton" name="searchProj">
               <property name="text">
                <string>Search</string>
               </property>
@@ -306,17 +306,17 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_9">
             <item>
-             <widget class="QLabel" name="ProjName_2">
+             <widget class="QLabel" name="ProjName">
               <property name="text">
                <string>Project Name:</string>
               </property>
               <property name="buddy">
-               <cstring>name_2</cstring>
+               <cstring>name</cstring>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="name_2"/>
+             <widget class="QLineEdit" name="name"/>
             </item>
            </layout>
           </item>
@@ -325,7 +325,7 @@
             <item row="0" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_10">
               <item>
-               <widget class="QLabel" name="ProjNum_2">
+               <widget class="QLabel" name="ProjNum">
                 <property name="minimumSize">
                  <size>
                   <width>68</width>
@@ -336,12 +336,12 @@
                  <string>Project #:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>num_2</cstring>
+                 <cstring>num</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="num_2">
+               <widget class="QLineEdit" name="num">
                 <property name="maximumSize">
                  <size>
                   <width>100</width>
@@ -364,7 +364,7 @@
             <item row="0" column="1">
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="2" column="1" colspan="2">
-               <widget class="QComboBox" name="priority_2">
+               <widget class="QComboBox" name="priority">
                 <item>
                  <property name="text">
                   <string>Normal</string>
@@ -393,17 +393,17 @@
                </widget>
               </item>
               <item row="2" column="6">
-               <widget class="QLabel" name="ProjDue_2">
+               <widget class="QLabel" name="ProjDue">
                 <property name="text">
                  <string>Due Date:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>due_2</cstring>
+                 <cstring>due</cstring>
                 </property>
                </widget>
               </item>
               <item row="2" column="7" colspan="2">
-               <widget class="QDateEdit" name="due_2">
+               <widget class="QDateEdit" name="due">
                 <property name="displayFormat">
                  <string>MM/dd/yyyy</string>
                 </property>
@@ -413,70 +413,70 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="ProjPriority_2">
+               <widget class="QLabel" name="ProjPriority">
                 <property name="text">
                  <string>Priority:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>priority_2</cstring>
+                 <cstring>priority</cstring>
                 </property>
                </widget>
               </item>
               <item row="0" column="3">
-               <widget class="QLabel" name="ProjStatus_2">
+               <widget class="QLabel" name="ProjStatus">
                 <property name="text">
                  <string>Status:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>status_2</cstring>
+                 <cstring>status</cstring>
                 </property>
                </widget>
               </item>
               <item row="0" column="4" colspan="2">
-               <widget class="QComboBox" name="status_2"/>
+               <widget class="QComboBox" name="status"/>
               </item>
               <item row="0" column="6">
-               <widget class="QLabel" name="ProjCat_2">
+               <widget class="QLabel" name="ProjCat">
                 <property name="text">
                  <string>Category:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>category_2</cstring>
+                 <cstring>category</cstring>
                 </property>
                </widget>
               </item>
               <item row="0" column="7" colspan="2">
-               <widget class="QComboBox" name="category_2"/>
+               <widget class="QComboBox" name="category"/>
               </item>
               <item row="2" column="3">
-               <widget class="QLabel" name="ProjCost_2">
+               <widget class="QLabel" name="ProjCost">
                 <property name="text">
                  <string>Total Cost:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>cost_2</cstring>
+                 <cstring>cost</cstring>
                 </property>
                </widget>
               </item>
               <item row="2" column="4" colspan="2">
-               <widget class="QDoubleSpinBox" name="cost_2">
+               <widget class="QDoubleSpinBox" name="cost">
                 <property name="maximum">
                  <double>999999.989999999990687</double>
                 </property>
                </widget>
               </item>
               <item row="0" column="0">
-               <widget class="QLabel" name="ProjDateCreate_2">
+               <widget class="QLabel" name="ProjDateCreate">
                 <property name="text">
                  <string>Date Created:</string>
                 </property>
                 <property name="buddy">
-                 <cstring>created_2</cstring>
+                 <cstring>created</cstring>
                 </property>
                </widget>
               </item>
               <item row="0" column="1" colspan="2">
-               <widget class="QDateEdit" name="created_2">
+               <widget class="QDateEdit" name="created">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -505,17 +505,17 @@ color: rgb(223, 223, 223);</string>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_11">
             <item>
-             <widget class="QLabel" name="label_10">
+             <widget class="QLabel" name="ProjDescription">
               <property name="text">
                <string>Description:</string>
               </property>
               <property name="buddy">
-               <cstring>description_2</cstring>
+               <cstring>description</cstring>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="description_2"/>
+             <widget class="QTextEdit" name="description"/>
             </item>
            </layout>
           </item>
@@ -535,7 +535,7 @@ color: rgb(223, 223, 223);</string>
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="ProjSave_3">
+             <widget class="QPushButton" name="ProjSave">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -551,7 +551,7 @@ color: rgb(223, 223, 223);</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="ProjCancel_3">
+             <widget class="QPushButton" name="ProjCancel">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -671,22 +671,22 @@ color: rgb(223, 223, 223);</string>
   <tabstop>upcomingDeadlines</tabstop>
   <tabstop>urgentProjects</tabstop>
   <tabstop>tabWidget</tabstop>
-  <tabstop>tableView_3</tabstop>
-  <tabstop>editProj_2</tabstop>
-  <tabstop>newProj_2</tabstop>
-  <tabstop>deleteProj_2</tabstop>
-  <tabstop>searchProj_2</tabstop>
-  <tabstop>name_2</tabstop>
-  <tabstop>num_2</tabstop>
-  <tabstop>created_2</tabstop>
-  <tabstop>status_2</tabstop>
-  <tabstop>category_2</tabstop>
-  <tabstop>priority_2</tabstop>
-  <tabstop>cost_2</tabstop>
-  <tabstop>due_2</tabstop>
-  <tabstop>description_2</tabstop>
-  <tabstop>ProjSave_3</tabstop>
-  <tabstop>ProjCancel_3</tabstop>
+  <tabstop>projectsView</tabstop>
+  <tabstop>editProj</tabstop>
+  <tabstop>newProj</tabstop>
+  <tabstop>deleteProj</tabstop>
+  <tabstop>searchProj</tabstop>
+  <tabstop>name</tabstop>
+  <tabstop>num</tabstop>
+  <tabstop>created</tabstop>
+  <tabstop>status</tabstop>
+  <tabstop>category</tabstop>
+  <tabstop>priority</tabstop>
+  <tabstop>cost</tabstop>
+  <tabstop>due</tabstop>
+  <tabstop>description</tabstop>
+  <tabstop>ProjSave</tabstop>
+  <tabstop>ProjCancel</tabstop>
  </tabstops>
  <resources>
   <include location="myres.qrc"/>

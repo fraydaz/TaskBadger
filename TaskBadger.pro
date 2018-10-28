@@ -26,11 +26,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dbconnection.cpp
+    project.cpp \
+    dbmanager.cpp \
+    projectdao.cpp \
+    task.cpp \
+    projectmodel.cpp
 
 HEADERS += \
         mainwindow.h \
-    dbconnection.h
+    project.h \
+    dbmanager.h \
+    projectdao.h \
+    task.h \
+    projectmodel.h
 
 FORMS += \
         mainwindow.ui

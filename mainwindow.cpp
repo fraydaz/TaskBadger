@@ -1,141 +1,73 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "project.h"
 #include <QtCore>
 #include <QtGui>
-#include <QSqlDatabase>
-#include <QSqlDriver>
-#include <QSqlError>
-#include <QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    DB = new DBConnection();
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->created_2->setDate(QDate::currentDate());
-    ui->due_2->setDate(QDate::currentDate());
-    populateCat();
-    populateStat();
-    setTreeView();
-    setTableView();
+    project = new Project();
+    projModel = new ProjectModel();
+    setUILayout();
 }
-
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
+void MainWindow::setUILayout()
+{
+    openWidgetPg(dashboardPg);
+    ui->created->setDate(QDate::currentDate());
+    ui->due->setDate(QDate::currentDate());
+    populateCat();
+    populateStat();
+    setTreeView();
+    setTableView(ui->tableView, "projects_view");
+    setTableView(ui->projectsView, "projects_view");
+}
+void MainWindow::openProjTab(int index)
+{
+    ui->tabWidget->setCurrentIndex(index);
+}
+void MainWindow::openWidgetPg(int index)
+{
+    ui->stackedWidget->setCurrentIndex(index);
+}
 void MainWindow::setTreeView()
 {
-    QString sql = "SELECT name AS 'My Projects' FROM category ORDER BY id ASC;";
-    QSqlQuery query = DB->sqlSelect(sql);
-    this->model = new QSqlQueryModel();
-    model->setQuery(query);
+    model = projModel->setTreeView("projects_tree");
     ui->treeView->setModel(model);
 }
-void MainWindow::setTableView()
+void MainWindow::setTableView(QTableView *table, QString view)
 {  
-    QString sql = "SELECT * from projects_view;";
-    QSqlQuery query = DB->sqlSelect(sql);
-    this->model = new QSqlQueryModel();
-    model->setQuery(query);
-    ui->tableView->setSortingEnabled(true);
-    ui->tableView->setModel(model);
-    ui->tableView->resizeColumnsToContents();
-    ui->tableView_3->setSortingEnabled(true);
-    ui->tableView_3->setModel(model);
-    ui->tableView_3->resizeColumnsToContents();
-}
-void MainWindow::on_createProject_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->tabWidget->setCurrentIndex(1);
-}
-
-void MainWindow::on_upcomingDeadlines_clicked()
-{
-    QString sql = "SELECT * from upcoming_due;";
-    QSqlQuery query = DB->sqlSelect(sql);
-    this->model = new QSqlQueryModel();
-    model->setQuery(query);
-    ui->tableView->setSortingEnabled(true);
-    ui->tableView->setModel(model);
-    ui->tableView->resizeColumnsToContents();
-}
-
-void MainWindow::on_urgentProjects_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->tabWidget->setCurrentIndex(0);
+    model = projModel->setTableView(view);
+    table->setModel(model);
+    table->resizeColumnsToContents();
 }
 void MainWindow::populateCat()
 {
-    QString sql = "SELECT name FROM category ORDER BY name ASC;";
-    QSqlQuery query = DB->sqlSelect(sql);
-    this->model = new QSqlQueryModel();
-    model->setQuery(query);
-    ui->category_2->setModel(model);
+    model = projModel->setComboBox("category", "name");
+    ui->category->setModel(model);
 }
 void MainWindow::populateStat()
 {
-    QString sql = "SELECT value FROM status ORDER BY id ASC;";
-    QSqlQuery query =  DB->sqlSelect(sql);
-    this->model = new QSqlQueryModel();
-    model->setQuery(query);
-    ui->status_2->setModel(model);
+    model = projModel->setComboBox("status", "id");
+    ui->status->setModel(model);
 }
-
-
-
-void MainWindow::getFormInfo()
+void MainWindow::saveProject()
 {
-    pName = ui->name_2->text();
-    pDetails = ui->description_2->toPlainText();
-    pPriority = ui->priority_2->currentText();
-    pCost = ui->cost_2->text();
-    pDue = ui->due_2->date();
-    setCatID();
-    setStatusID();
-    insertData();
-}
-void MainWindow::setCatID()
-{
-    QString catVal = ui->category_2->currentText();
-    QString sql = "SELECT id FROM category WHERE name='" + catVal + "'";
-    QSqlQuery query =  DB->sqlSelect(sql);
-    query.next();
-    pCat = query.value(0).toInt();
-}
-void MainWindow::setStatusID()
-{
-    QString statusVal = ui->status_2->currentText();
-    QString sql = "SELECT id FROM status WHERE value='" + statusVal + "'";
-    QSqlQuery query =  DB->sqlSelect(sql);
-    query.next();
-    pStatus = query.value(0).toInt();
-}
-void MainWindow::insertData()
-{
-    QSqlDatabase localdb = QSqlDatabase::database("MyDB");
-    QSqlQuery query = QSqlQuery(localdb);
-    query.prepare("INSERT INTO project(name, description, priorityID, "
-                      "total_cost, date_created, due_date, statusID, categoryID) "
-                       "VALUES(:pName, :pDetails, :pPriority, :pCost, :pDate, "
-                      ":pDue, :pStatus, :pCat)");
-    query.bindValue(":pName", pName);
-    query.bindValue(":pDetails", pDetails);
-    query.bindValue(":pPriority", pPriority);
-    query.bindValue(":pCost", pCost);
-    query.bindValue(":pDate", pDate);
-    query.bindValue(":pDue", pDue);
-    query.bindValue(":pStatus", pStatus);
-    query.bindValue(":pCat", pCat);
-
-    bool success =  DB->sqlInsert(query);
-    if (success)
-        this->close();
+    project->setName(ui->name->text());
+    project->setDescription(ui->description->toPlainText());
+    project->setPriority(ui->priority->currentText());
+    project->setCost(ui->cost->text());
+    project->setDateCreated();
+    project->setDueDate(ui->due->date());
+    project->setCatID(ui->category->currentText());
+    project->setStatusID(ui->status->currentText());
+    project->create_project();
 }
 
 QHBoxLayout* MainWindow::setProjLayout()
@@ -144,57 +76,20 @@ QHBoxLayout* MainWindow::setProjLayout()
     // create actual layout for viewing project here
     QHBoxLayout *hLayout = new QHBoxLayout;
         QPushButton *b1 = new QPushButton("A");
-        QPushButton *b2 = new QPushButton("B");
-        QPushButton *b3 = new QPushButton("C");
         hLayout->addWidget(b1);
-        hLayout->addWidget(b2);
-        hLayout->addWidget(b3);
         return hLayout;
 }
-void MainWindow::on_tabWidget_tabCloseRequested(int index)
+void MainWindow::clearProjForm()
 {
-    ui->tabWidget->removeTab(index);
-}
 
+}
 /**************************************
-           SIGNALS & SLOTS
+              ACTION SLOTS
 ***************************************/
-
-
-void MainWindow::on_ProjSave_3_clicked()
-{
-    getFormInfo();
-}
-
-void MainWindow::on_ProjCancel_3_clicked()
-{
-    //this->close();
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-void MainWindow::on_editProj_2_clicked()
-{
-
-}
-
-void MainWindow::on_newProj_2_clicked()
-{
-     ui->tabWidget->setCurrentIndex(1);
-}
-
-void MainWindow::on_deleteProj_2_clicked()
-{
-
-}
-
-void MainWindow::on_searchProj_2_clicked()
-{
-
-}
 
 void MainWindow::on_actionHome_triggered()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    openWidgetPg(dashboardPg);
 }
 
 void MainWindow::on_actionRefresh_triggered()
@@ -208,16 +103,20 @@ void MainWindow::on_actionRefresh_triggered()
 void MainWindow::on_actionNext_triggered()
 {
     int curr = this->ui->stackedWidget->currentIndex();
-    this->ui->stackedWidget->setCurrentIndex(curr+1);
+    openWidgetPg(curr+1);
 }
 
 void MainWindow::on_actionBack_triggered()
 {
     int curr = this->ui->stackedWidget->currentIndex();
-    this->ui->stackedWidget->setCurrentIndex(curr-1);
+    openWidgetPg(curr-1);
 }
 
-void MainWindow::on_tableView_3_clicked(const QModelIndex &index)
+/**************************************
+              PROJECT SLOTS
+***************************************/
+
+void MainWindow::on_projectsView_clicked(const QModelIndex &index)
 {
     if (index.isValid())
     {
@@ -226,7 +125,7 @@ void MainWindow::on_tableView_3_clicked(const QModelIndex &index)
     }
 }
 
-void MainWindow::on_tableView_3_doubleClicked(const QModelIndex &index)
+void MainWindow::on_projectsView_doubleClicked(const QModelIndex &index)
 {
     QHBoxLayout *projLayout = new QHBoxLayout;
     projLayout = setProjLayout();
@@ -235,6 +134,7 @@ void MainWindow::on_tableView_3_doubleClicked(const QModelIndex &index)
     newTab->setLayout(projLayout);
     ui->tabWidget->addTab(newTab, "projectNum");
     ui->tabWidget->setCurrentWidget(newTab);
+}
 
     /* // get ID of row & mySql query
      int row = index.row();
@@ -247,4 +147,64 @@ void MainWindow::on_tableView_3_doubleClicked(const QModelIndex &index)
      model->setQuery(query);
      newTable->setModel(model);
      newTable->show();*/
+
+void MainWindow::on_ProjSave_clicked()
+{
+    saveProject();
+}
+
+void MainWindow::on_ProjCancel_clicked()
+{
+    clearProjForm();
+    openWidgetPg(dashboardPg);
+}
+
+void MainWindow::on_editProj_clicked()
+{
+
+}
+
+void MainWindow::on_newProj_clicked()
+{
+    openProjTab(newProjTab);
+}
+
+void MainWindow::on_deleteProj_clicked()
+{
+
+}
+
+void MainWindow::on_searchProj_clicked()
+{
+
+}
+
+/**************************************
+             DASHBOARD SLOTS
+***************************************/
+
+void MainWindow::on_createProject_clicked()
+{
+    openWidgetPg(projectsPg);
+    openProjTab(newProjTab);
+}
+
+void MainWindow::on_upcomingDeadlines_clicked()
+{
+    setTableView(ui->tableView, "upcoming_due");
+}
+
+void MainWindow::on_urgentProjects_clicked()
+{
+    openWidgetPg(projectsPg);
+    openProjTab(ProjectsTab);
+}
+
+/**************************************
+           TAB WIDGET SLOTS
+***************************************/
+
+void MainWindow::on_tabWidget_tabCloseRequested(int index)
+{
+    ui->tabWidget->removeTab(index);
 }
