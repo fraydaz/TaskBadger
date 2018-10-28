@@ -13,7 +13,7 @@ public:
 
     QString getFkValue(QString table, int id);
 
-    void saveProject(QString n, QString d, QString p, QString c,
+    bool saveProject(QString n, QString d, QString p, QString c,
                      QDateTime dt, QDate due, int s, int cat);
 
     QSqlQuery getList(QString table, QString value);

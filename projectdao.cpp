@@ -24,7 +24,7 @@ QString ProjectDAO::getFkValue(QString table, int id)
     value = query.value(0).toString();
     return value;
 }
-void ProjectDAO::saveProject(QString n, QString d, QString p, QString c,
+bool ProjectDAO::saveProject(QString n, QString d, QString p, QString c,
                              QDateTime dt, QDate due, int s, int cat)
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
@@ -42,7 +42,8 @@ void ProjectDAO::saveProject(QString n, QString d, QString p, QString c,
     query.bindValue(":pStatus", s);
     query.bindValue(":pCat", cat);
 
-   Database->sqlInsert(query);
+    bool saved = Database->sqlInsert(query);
+    return saved;
 }
 QSqlQuery ProjectDAO::getList(QString table, QString value)
 {

@@ -30,7 +30,8 @@ SOURCES += \
     dbmanager.cpp \
     projectdao.cpp \
     task.cpp \
-    projectmodel.cpp
+    projectmodel.cpp \
+    exception.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     dbmanager.h \
     projectdao.h \
     task.h \
-    projectmodel.h
+    projectmodel.h \
+    exception.h
 
 FORMS += \
         mainwindow.ui

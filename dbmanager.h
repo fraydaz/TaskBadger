@@ -1,6 +1,7 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
+#include "exception.h"
 #include <QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlDriver>
@@ -12,19 +13,21 @@ class DBManager
 {
 public:
     DBManager();
-    QSqlDatabase localdb = QSqlDatabase::database("MyDB");
-    bool connectDB();
+    ~DBManager();
+    QSqlDatabase db;
+    void connectDB();
     bool sqlInsert(QSqlQuery sql);
-    QSqlQuery sqlSelect(QString query);
-    QSqlQuery sqlSelect(QSqlQuery query);
-    void sqlDelete(QString query);
+    QSqlQuery sqlSelect(QString sql);
+    QSqlQuery sqlSelect(QSqlQuery sql);
+    void sqlDelete(QString sql);
     void initializeDB();
 private:
-    QString host = "localhost";
-    QString database = "task_badger";
-    QString username = "badger";
-    QString password = "champlain";
+    QString host;
+    QString database;
+    QString username;
+    QString password;
     QMessageBox errorMsg;
+    class Exception* exception;
 };
 
 #endif // DBMANAGER_H
