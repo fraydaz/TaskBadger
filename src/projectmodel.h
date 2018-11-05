@@ -3,6 +3,7 @@
 
 #include "projectdao.h"
 #include "project.h"
+#include "tabformlayout.h"
 #include <QtCore>
 #include <QtGui>
 #include <QString>
@@ -18,6 +19,8 @@ public:
     QSqlQueryModel* setComboBox(QString menu, QString order);
     QSqlQueryModel* setTableView(QString view);
     QSqlQueryModel* setTreeView(QString view);
+    QVBoxLayout* setProjLayout(QString id);
+    //void setProjData(TabFormLayout *layout, QString id);
 
 private:
     class ProjectDAO* projectDAO;

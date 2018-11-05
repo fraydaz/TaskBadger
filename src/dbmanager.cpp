@@ -31,7 +31,6 @@ void DBManager::connectDB()
 }
 QSqlQuery DBManager::sqlSelect(QString sql)
 {
-    //QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(db);
     query.prepare(sql);
 
@@ -56,8 +55,21 @@ bool DBManager::sqlInsert(QSqlQuery query)
     success = query.exec();
 
     if(!success)
+    {
+        qDebug() << "Query Failed: " << query.lastQuery();
         exception->showError(query.lastError().text());
+    }
     else
         exception->showSuccess("Successfully Saved");
     return success;
 }
+ void DBManager::sqlDelete(QString sql)
+ {
+     QSqlQuery query = QSqlQuery(db);
+     query.prepare(sql);
+
+     if(!query.exec())
+         exception->showError(query.lastError().text());
+     else
+         qDebug() << "Record Deleted: " << query.lastQuery();
+ }

@@ -37,7 +37,8 @@ public:
     void setTableView(QTableView *table, QString view);
 
     void clearProjForm();
-    QHBoxLayout* setProjLayout();
+    void editProject(QString id);
+    QVBoxLayout* setProjLayout();
 
 private slots:
     /*      ACTION SLOTS        */
@@ -90,7 +91,8 @@ private:
     int newProjTab = 1;
     int dashboardPg = 0;
     int projectsPg = 1;
-;
+    QString projectID = "0";
+
     QWidget *newTab;
     QTableView *newTable;
 };

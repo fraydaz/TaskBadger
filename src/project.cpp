@@ -10,7 +10,15 @@ void Project::create_project()
     projectDAO->saveProject(pName, pDetails, pPriority, pCost,
                             pDate, pDue, pStatusID, pCatID);
 }
-
+void Project::delete_project(QString id)
+{
+    projectDAO->deleteProject(id);
+}
+void Project::update_project(QString id)
+{
+    projectDAO->updateProejct(id, pName, pDetails, pPriority,
+                              pCost, pDue, pStatusID, pCatID);
+}
 /******************************************
                 SET FUNCTIONS
 *******************************************/

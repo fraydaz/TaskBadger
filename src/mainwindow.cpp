@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "project.h"
+#include "tabformlayout.h"
 #include <QtCore>
 #include <QtGui>
 
@@ -42,7 +43,7 @@ void MainWindow::setTreeView()
     ui->treeView->setModel(model);
 }
 void MainWindow::setTableView(QTableView *table, QString view)
-{  
+{
     model = projModel->setTableView(view);
     table->setModel(model);
     table->resizeColumnsToContents();
@@ -69,19 +70,42 @@ void MainWindow::saveProject()
     project->setStatusID(ui->status->currentText());
     project->create_project();
 }
-
-QHBoxLayout* MainWindow::setProjLayout()
+void MainWindow::editProject(QString id)
 {
-    // test setting up layout in code
-    // create actual layout for viewing project here
-    QHBoxLayout *hLayout = new QHBoxLayout;
-        QPushButton *b1 = new QPushButton("A");
-        hLayout->addWidget(b1);
-        return hLayout;
+    // create layout for view & edit project
+    QVBoxLayout *projLayout = new QVBoxLayout;
+    projLayout = projModel->setProjLayout(id);
+    newTab = new QWidget(ui->tabWidget);
+
+    // set layout and open new tab
+    newTab->setLayout(projLayout);
+    ui->tabWidget->addTab(newTab, "Project #" + id);
+    ui->tabWidget->setCurrentWidget(newTab);
+}
+QVBoxLayout* MainWindow::setProjLayout()
+{
+    QVBoxLayout *projLayout = new QVBoxLayout;
+    class TabFormLayout *layout;
+    layout = new TabFormLayout();
+    projLayout = layout->setupUi();
+    return projLayout;
 }
 void MainWindow::clearProjForm()
 {
-
+    foreach(QLineEdit *widget, this->findChildren<QLineEdit*>())
+    {
+        widget->clear();
+    }
+    foreach(QDateEdit *widget, this->findChildren<QDateEdit*>())
+    {
+        widget->setDate(QDate::currentDate());
+    }
+    // reset all other fields to default values
+    ui->status->setCurrentText("New");
+    ui->category->setCurrentText("Personal");
+    ui->priority->setCurrentText("Normal");
+    ui->description->clear();
+    ui->cost->setValue(0.00);
 }
 /**************************************
               ACTION SLOTS
@@ -94,10 +118,10 @@ void MainWindow::on_actionHome_triggered()
 
 void MainWindow::on_actionRefresh_triggered()
 {
-   /* QString queryStr = model->query().executedQuery();
-    model->clear();
-    model->query().clear();
-    model->setQuery(queryStr);*/
+    clearProjForm();
+    setTreeView();
+    setTableView(ui->tableView, "projects_view");
+    setTableView(ui->projectsView, "projects_view");
 }
 
 void MainWindow::on_actionNext_triggered()
@@ -118,35 +142,14 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::on_projectsView_clicked(const QModelIndex &index)
 {
-    if (index.isValid())
-    {
-        QString cellData = index.data().toString();
-        qDebug() << "The value at this cell is: " << cellData;
-    }
+    QModelIndex idIndex = model->index(index.row(), 0, QModelIndex());
+    projectID = idIndex.data().toString();
 }
 
 void MainWindow::on_projectsView_doubleClicked(const QModelIndex &index)
 {
-    QHBoxLayout *projLayout = new QHBoxLayout;
-    projLayout = setProjLayout();
-    newTab = new QWidget(ui->tabWidget);
-
-    newTab->setLayout(projLayout);
-    ui->tabWidget->addTab(newTab, "projectNum");
-    ui->tabWidget->setCurrentWidget(newTab);
+    editProject(projectID);
 }
-
-    /* // get ID of row & mySql query
-     int row = index.row();
-     QString idString = ui->tableView->model()->data(ui->tableView->model()->index(row,0)).toString();
-     QString sql = "SELECT * FROM project WHERE id = "
-            " + QString::number(idString)";
-     QSqlQuery query = DB->sqlSelect(sql);
-     // display data from query in table
-     this->model = new QSqlQueryModel();
-     model->setQuery(query);
-     newTable->setModel(model);
-     newTable->show();*/
 
 void MainWindow::on_ProjSave_clicked()
 {
@@ -161,7 +164,7 @@ void MainWindow::on_ProjCancel_clicked()
 
 void MainWindow::on_editProj_clicked()
 {
-
+    editProject(projectID);
 }
 
 void MainWindow::on_newProj_clicked()
@@ -171,7 +174,9 @@ void MainWindow::on_newProj_clicked()
 
 void MainWindow::on_deleteProj_clicked()
 {
-
+    // add confirmation before deleting
+    project->delete_project(projectID);
+    setTableView(ui->projectsView, "projects_view");
 }
 
 void MainWindow::on_searchProj_clicked()

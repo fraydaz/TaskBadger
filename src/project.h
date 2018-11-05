@@ -38,8 +38,8 @@ public:
 
     // Write This Code Today
     void create_project();
-    void edit_project();
-    void delete_project();
+    void update_project(QString id);
+    void delete_project(QString id);
 
     // Pages To Be Added
     void add_task();
@@ -62,6 +62,6 @@ private:
     QString pCat;
     int pStatusID;
     int pCatID;
-};    
+};
 
 #endif // PROJECT_H
