@@ -32,7 +32,9 @@ SOURCES += \
     task.cpp \
     projectmodel.cpp \
     exception.cpp \
-    tabformlayout.cpp
+    tabformlayout.cpp \
+    taskdao.cpp \
+    taskformlayout.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +44,9 @@ HEADERS += \
     task.h \
     projectmodel.h \
     exception.h \
-    tabformlayout.h
+    tabformlayout.h \
+    taskdao.h \
+    taskformlayout.h
 
 FORMS += \
         mainwindow.ui

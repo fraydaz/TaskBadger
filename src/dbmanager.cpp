@@ -35,12 +35,32 @@ QSqlQuery DBManager::sqlSelect(QString sql)
     query.prepare(sql);
 
     if(!query.exec())
+    {
         exception->showError(query.lastError().text());
+        qDebug() << "Query Failed: " << query.lastQuery();
+    }
     else
         qDebug() << "Query Successful: " << query.lastQuery();
     return query;
 }
-
+QSqlQuery DBManager::sqlExec(QString sql)
+{
+    QSqlQuery query = QSqlQuery(db);
+    if(!query.exec(sql))
+    {
+        exception->showError(query.lastError().text());
+        qDebug() << "Query Failed: " << query.lastQuery();
+    }
+    else
+    {
+        qDebug() << "Query Successful: " << query.lastQuery();
+        int i = 0;
+            while (query.next()) {
+                qDebug() << query.value(i++);
+            }
+    }
+    return query;
+}
 QSqlQuery DBManager::sqlSelect(QSqlQuery query)
 {
     if(!query.exec())

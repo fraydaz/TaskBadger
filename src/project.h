@@ -2,7 +2,6 @@
 #define PROJECT_H
 
 // Project Data Class
-//
 #include "projectdao.h"
 #include <QString>
 #include <QDateTime>

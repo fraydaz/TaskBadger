@@ -248,10 +248,10 @@ void TabFormLayout::saveProject()
     project->setStatusID(projStatus->currentText());
     project->update_project(id->text());
 }
-/*void TabFormLayout::cancelProject()
+void TabFormLayout::cancelProject()
 {
     // reset all other fields to default values
-    projName->clear();
+   /* projName->clear();
     id->clear();
     projStatus->setCurrentText("New");
     projCategory->setCurrentText("Personal");
@@ -259,5 +259,6 @@ void TabFormLayout::saveProject()
     projDescription->clear();
     projCost->setValue(0.00);
     dueDate->setDate(QDate::currentDate());
-    createdDate->setDate(QDate::currentDate());
-}*/
+    createdDate->setDate(QDate::currentDate());*/
+    mainWindow->openWidgetPg(0);
+}

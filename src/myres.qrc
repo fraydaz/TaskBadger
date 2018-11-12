@@ -14,5 +14,8 @@
         <file>Images/icons8-home-24.png</file>
         <file>Images/icons8-left-24.png</file>
         <file>Images/icons8-right-24.png</file>
+        <file>Images/icons8-task-planning-24.png</file>
+        <file>Images/icons8-tasks-48.png</file>
+        <file>Images/icons8-to-do-48.png</file>
     </qresource>
 </RCC>

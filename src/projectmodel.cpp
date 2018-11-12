@@ -5,6 +5,7 @@ ProjectModel::ProjectModel()
 {
     projectDAO = new ProjectDAO();
     project = new Project();
+    taskDAO = new TaskDAO();
 }
 
 QSqlQueryModel* ProjectModel::setComboBox(QString menu, QString order)
@@ -22,7 +23,13 @@ QSqlQueryModel* ProjectModel::setTableView(QString view)
     model->setQuery(query);
     return model;
 }
-
+QSqlQueryModel* ProjectModel::setTaskView(QString view, QString id)
+{
+    QSqlQuery query = projectDAO->getRoutine(view, id);
+    this->model = new QSqlQueryModel();
+    model->setQuery(query);
+    return model;
+}
 QSqlQueryModel* ProjectModel::setTreeView(QString view)
 {
     QSqlQuery query = projectDAO->getView(view);
@@ -53,6 +60,26 @@ QVBoxLayout* ProjectModel::setProjLayout(QString id)
     newLayout->createdDate->setStyleSheet("");
     return projLayout;
 }
+/*QVBoxLayout* ProjectModel::setTaskLayout(QString id)
+{
+    QVBoxLayout *projLayout = new QVBoxLayout;
+    class TabFormLayout *newLayout;
+    newLayout = new TabFormLayout();
+    projLayout = newLayout->setupUi();
+    //setProjData(newLayout, id);
+    newLayout->id->setText(id);
+    newLayout->id->setStyleSheet("");
+    newLayout->projName->setText(taskDAO->getTaskInfo(id, "name"));
+    newLayout->projPriority->setCurrentText(taskDAO->getTaskInfo(id, "priority"));
+    newLayout->projDescription->setText(taskDAO->getTaskInfo(id, "description"));
+    QString statusID = taskDAO->getTaskInfo(id, "statusID");
+    newLayout->projStatus->setCurrentText(taskDAO->getFkValue("status", statusID));
+    QString projectID = taskDAO->getTaskInfo(id, "projectID");
+    newLayout->projCategory->setCurrentText(taskDAO->getFkValue("project", projectID));
+    newLayout->dueDate->setDate(taskDAO->getTaskDate(id, "due_date"));
+    newLayout->createdDate->setStyleSheet("");
+    return projLayout;
+}*/
 /*void ProjectModel::setProjData(TabFormLayout* layout, QString id)
 {
     layout->id->setText(id);

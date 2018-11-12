@@ -50,7 +50,7 @@ void ProjectDAO::deleteProject(QString id)
     QString sql = "DELETE FROM project WHERE id='" + id + "'";
     Database->sqlDelete(sql);
 }
-bool ProjectDAO::updateProejct(QString id, QString n, QString d, QString p,
+bool ProjectDAO::updateProject(QString id, QString n, QString d, QString p,
                                QString c, QDate due, int s, int cat)
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
@@ -81,6 +81,14 @@ QSqlQuery ProjectDAO::getView(QString view)
     QString sql = "SELECT * FROM " + view + ";";
     QSqlQuery query = Database->sqlSelect(sql);
     return query;
+}
+QSqlQuery ProjectDAO::getRoutine(QString procedure, QString id)
+{
+    QString set = "SET @id = " + id + ";";
+    QSqlQuery query = Database->sqlExec(set);
+    QString call = "CALL " + procedure + "(@id);";
+    QSqlQuery result = Database->sqlExec(call);
+    return result;
 }
 QString ProjectDAO::getProjInfo(QString id, QString data)
 {

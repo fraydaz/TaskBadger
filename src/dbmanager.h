@@ -18,6 +18,7 @@ public:
     void connectDB();
     bool sqlInsert(QSqlQuery sql);
     QSqlQuery sqlSelect(QString sql);
+    QSqlQuery sqlExec(QString sql);
     QSqlQuery sqlSelect(QSqlQuery sql);
     void sqlDelete(QString sql);
     void initializeDB();

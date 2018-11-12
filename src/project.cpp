@@ -16,7 +16,7 @@ void Project::delete_project(QString id)
 }
 void Project::update_project(QString id)
 {
-    projectDAO->updateProejct(id, pName, pDetails, pPriority,
+    projectDAO->updateProject(id, pName, pDetails, pPriority,
                               pCost, pDue, pStatusID, pCatID);
 }
 /******************************************

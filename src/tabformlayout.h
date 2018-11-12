@@ -57,7 +57,7 @@ public:
 
 private slots:
     void saveProject();
-   // void cancelProject();
+    void cancelProject();
 
 private:
     QVBoxLayout *vLayout;
