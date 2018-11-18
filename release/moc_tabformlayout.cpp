@@ -95,8 +95,6 @@ void *TabFormLayout::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_TabFormLayout.stringdata0))
         return static_cast<void*>(this);
-    if (!strcmp(_clname, "DBObject"))
-        return static_cast< DBObject*>(this);
     return QMainWindow::qt_metacast(_clname);
 }
 

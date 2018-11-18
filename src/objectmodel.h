@@ -14,9 +14,9 @@ public:
     ObjectModel();
     virtual QSqlQueryModel* getComboBox(QString menu, QString order);
     virtual QSqlQueryModel* getTableModel(QString view);
-    //virtual QSqlQueryModel* getTreeView(QString view);
-    //virtual QVBoxLayout* setLayout(QString id);
-    //void setProjData(TabFormLayout *layout, QString id);
+    virtual QSqlQueryModel* getTableModel(QString view, QString id);
+    virtual QSqlQueryModel* getTreeModel(QString view);
+    virtual QVBoxLayout* setLayout(QString id) = 0;
 
 protected:
     QSqlQueryModel *model;

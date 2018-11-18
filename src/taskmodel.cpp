@@ -4,28 +4,21 @@ TaskModel::TaskModel()
 {
     taskDAO = new TaskDAO();
 }
-QSqlQueryModel* TaskModel::getTableModel(QString view, QString id)
-{
-    QSqlQuery query = objectDAO->getRoutine(view, id);
-    this->model = new QSqlQueryModel();
-    model->setQuery(query);
-    return model;
-}
-QVBoxLayout* TaskModel::setTaskLayout(QString id)
+QVBoxLayout* TaskModel::setLayout(QString id)
 {
     QVBoxLayout *taskLayout = new QVBoxLayout;
     class TaskFormLayout *newLayout;
     newLayout = new TaskFormLayout();
     taskLayout = newLayout->setupUi();
-    newLayout->number->setText(id);
-    newLayout->number->setStyleSheet("");
-    newLayout->name->setText(taskDAO->getObjectInfo(id, "name", "task"));
-    newLayout->priority->setCurrentText(taskDAO->getObjectInfo(id, "priority", "task"));
-    newLayout->description->setText(taskDAO->getObjectInfo(id, "description", "task"));
+    newLayout->objID->setText(id);
+    newLayout->objID->setStyleSheet("");
+    newLayout->objName->setText(taskDAO->getObjectInfo(id, "name", "task"));
+    newLayout->objPriority->setCurrentText(taskDAO->getObjectInfo(id, "priority", "task"));
+    newLayout->objDescription->setText(taskDAO->getObjectInfo(id, "description", "task"));
     QString statusID = taskDAO->getObjectInfo(id, "statusID", "task");
-    newLayout->status->setCurrentText(taskDAO->getFkValue("status", statusID));
+    newLayout->objStatus->setCurrentText(taskDAO->getFkValue("status", statusID));
     QString projectID = taskDAO->getObjectInfo(id, "projectID", "task");
-    newLayout->project->setCurrentText(taskDAO->getFkValue("project", projectID));
-    newLayout->due->setDate(taskDAO->getObjectDate(id, "due_date", "task"));
+    newLayout->objProject->setCurrentText(taskDAO->getFkValue("project", projectID));
+    newLayout->objDue->setDate(taskDAO->getObjectDate(id, "due_date", "task"));
     return taskLayout;
 }

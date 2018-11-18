@@ -3,32 +3,16 @@
 
 #include "objectmodel.h"
 #include "projectdao.h"
-#include "project.h"
-#include "tabformlayout.h"
-#include "taskformlayout.h"
-#include "taskdao.h"
-#include <QtCore>
-#include <QtGui>
-#include <QString>
-#include <QDateTime>
-#include <QSqlQueryModel>
-#include <QTabWidget>
-#include <QTableView>
+#include "projectformlayout.h"
 
 class ProjectModel : public ObjectModel
 {
 public:
     ProjectModel();
-    QSqlQueryModel* setTableView(QString view);
-    QSqlQueryModel* setTaskView(QString view, QString id);
-    QSqlQueryModel* setTreeView(QString view);
-    QVBoxLayout* setProjLayout(QString id);
-    //void setProjData(TabFormLayout *layout, QString id);
+    QVBoxLayout* setLayout(QString id);
 
 private:
     class ProjectDAO* projectDAO;
-    class Project* project;
-    QSqlQueryModel *model;
 };
 
 #endif // PROJECTMODEL_H

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "project.h"
-#include "tabformlayout.h"
+#include "projectformlayout.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -48,18 +48,18 @@ void MainWindow::openWidgetPg(int index)
 }
 void MainWindow::setTreeView()
 {
-    model = projectModel->setTreeView("projects_tree");
+    model = projectModel->getTreeModel("projects_tree");
     ui->treeView->setModel(model);
 }
 void MainWindow::setTableView(QTableView *table, QString view)
 {
-    model = projectModel->setTableView(view);
+    model = projectModel->getTableModel(view);
     table->setModel(model);
     //table->resizeColumnsToContents();
 }
 void MainWindow::setTaskView(QString view, QString id)
 {
-    model = projectModel->setTaskView(view, id);
+    model = taskModel->getTableModel(view, id);
     ui->tasksView->setModel(model);
     ui->tasksView->setColumnHidden(0, true);
     ui->tasksView->resizeColumnsToContents();
@@ -98,7 +98,7 @@ void MainWindow::editProject(QString id)
 {
     // create layout for view & edit project
     QVBoxLayout *projLayout = new QVBoxLayout;
-    projLayout = projectModel->setProjLayout(id);
+    projLayout = projectModel->setLayout(id);
     newTab = new QWidget(ui->project_tabWidget);
 
     // set layout and open new tab
@@ -109,8 +109,8 @@ void MainWindow::editProject(QString id)
 QVBoxLayout* MainWindow::setProjLayout()
 {
     QVBoxLayout *projLayout = new QVBoxLayout;
-    class TabFormLayout *layout;
-    layout = new TabFormLayout();
+    class ProjectFormLayout *layout;
+    layout = new ProjectFormLayout();
     projLayout = layout->setupUi();
     return projLayout;
 }
@@ -118,7 +118,7 @@ void MainWindow::editTask(QString id)
 {
     // create layout for view & edit task
     QVBoxLayout *taskLayout = new QVBoxLayout;
-    taskLayout = taskModel->setTaskLayout(id);
+    taskLayout = taskModel->setLayout(id);
     newTab = new QWidget(ui->task_tabWidget);
 
     // set layout and open new tab
@@ -129,8 +129,8 @@ void MainWindow::editTask(QString id)
 QVBoxLayout* MainWindow::setTaskLayout()
 {
     QVBoxLayout *taskLayout = new QVBoxLayout;
-    class TabFormLayout *layout;
-    layout = new TabFormLayout();
+    class ProjectFormLayout *layout;
+    layout = new ProjectFormLayout();
     taskLayout = layout->setupUi();
     return taskLayout;
 }
@@ -214,6 +214,7 @@ void MainWindow::on_urgentProjects_clicked()
 {
     openWidgetPg(projectsPg);
     openTab(ui->project_tabWidget, viewAllTab);
+    setTableView(ui->projectsView, "projects_view");
 }
 
 /**************************************

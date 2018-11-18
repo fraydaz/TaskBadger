@@ -32,13 +32,14 @@ SOURCES += \
     task.cpp \
     projectmodel.cpp \
     exception.cpp \
-    tabformlayout.cpp \
     taskdao.cpp \
     taskformlayout.cpp \
     dbobject.cpp \
     objectdao.cpp \
     objectmodel.cpp \
-    taskmodel.cpp
+    taskmodel.cpp \
+    formlayout.cpp \
+    projectformlayout.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,13 +49,14 @@ HEADERS += \
     task.h \
     projectmodel.h \
     exception.h \
-    tabformlayout.h \
     taskdao.h \
     taskformlayout.h \
     dbobject.h \
     objectdao.h \
     objectmodel.h \
-    taskmodel.h
+    taskmodel.h \
+    formlayout.h \
+    projectformlayout.h
 
 FORMS += \
         mainwindow.ui

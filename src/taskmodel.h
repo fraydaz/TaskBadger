@@ -3,14 +3,13 @@
 
 #include "objectmodel.h"
 #include "taskformlayout.h"
+#include "taskdao.h"
 
 class TaskModel : public ObjectModel
 {
 public:
     TaskModel();
-
-    QSqlQueryModel* getTableModel(QString view, QString id);
-    QVBoxLayout* setTaskLayout(QString id);
+    QVBoxLayout* setLayout(QString id);
 
 private:
     class TaskDAO* taskDAO;
