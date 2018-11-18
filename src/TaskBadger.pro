@@ -34,7 +34,11 @@ SOURCES += \
     exception.cpp \
     tabformlayout.cpp \
     taskdao.cpp \
-    taskformlayout.cpp
+    taskformlayout.cpp \
+    dbobject.cpp \
+    objectdao.cpp \
+    objectmodel.cpp \
+    taskmodel.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +50,11 @@ HEADERS += \
     exception.h \
     tabformlayout.h \
     taskdao.h \
-    taskformlayout.h
+    taskformlayout.h \
+    dbobject.h \
+    objectdao.h \
+    objectmodel.h \
+    taskmodel.h
 
 FORMS += \
         mainwindow.ui

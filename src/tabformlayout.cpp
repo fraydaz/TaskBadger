@@ -194,10 +194,10 @@ void TabFormLayout::retranslateUi()
     createdDate->setDate(QDate::currentDate());
     dueDate->setDate(QDate::currentDate());
 
-    model = projModel->setComboBox("category", "name");
+    model = projModel->getComboBox("category", "name");
     projCategory->setModel(model);
 
-    model = projModel->setComboBox("status", "id");
+    model = projModel->getComboBox("status", "id");
     projStatus->setModel(model);
 
     connect(pSave, SIGNAL(clicked()), this, SLOT(saveProject()));
@@ -242,7 +242,6 @@ void TabFormLayout::saveProject()
     project->setDescription(projDescription->toPlainText());
     project->setPriority(projPriority->currentText());
     project->setCost(projCost->text());
-    //project->setDateCreated(createdDate->date());
     project->setDueDate(dueDate->date());
     project->setCatID(projCategory->currentText());
     project->setStatusID(projStatus->currentText());

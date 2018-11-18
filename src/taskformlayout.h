@@ -17,7 +17,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <QSqlQueryModel>
-#include "projectmodel.h"
+#include "taskmodel.h"
 #include "task.h"
 #include "mainwindow.h"
 
@@ -30,36 +30,48 @@ public:
     QVBoxLayout* setupUi();
     void retranslateUi();
 
+    QLabel *tName;
+    QLabel *tProject;
+    QLabel *tNum;
+    QLabel *tPriority;
+    QLabel *tStatus;
+    QLabel *tDue;
+    QLabel *tDetails;
+
+    QLineEdit *name;
+    QLineEdit *number;
+    QComboBox *project;
+
+    QComboBox *priority;
+    QComboBox *status;
+
+    QDateEdit *due;
+
+    QTextEdit *description;
+
+    QPushButton *taskSave;
+    QPushButton *taskCancel;
+
+private slots:
+    void saveTask();
+    void cancelTask();
+
 private:
 
     QVBoxLayout *vLayout;
 
-    QFormLayout *formLayout;
-    QLabel *taskName;
-    QLineEdit *t_name;
-    QLabel *taskProject;
-    QComboBox *t_project;
-    QGridLayout *gridLayout;
-    QLabel *taskNum;
-    QComboBox *t_status;
-    QLabel *taskPriority;
-    QComboBox *t_priority;
-    QLineEdit *t_num;
-    QLabel *taskStatus;
-    QLabel *taskDue;
-    QDateEdit *t_due;
-    QSpacerItem *horizontalSpacer_5;
-    QSpacerItem *horizontalSpacer;
-    QHBoxLayout *horizontalLayout_15;
-    QLabel *taskDetails;
-    QTextEdit *t_description;
-    QHBoxLayout *horizontalLayout_16;
-    QSpacerItem *horizontalSpacer_10;
-    QPushButton *task_save;
-    QPushButton *task_cancel;
+    QHBoxLayout *detailsLayout;
+    QHBoxLayout *buttonsLayout;
+
+    QFormLayout *fLayout;
+    QGridLayout *gLayout;
+
+    QSpacerItem *gridSpacer;
+    QSpacerItem *hSpacer;
+    QSpacerItem *buttonSpacer;
 
     QSqlQueryModel *model;
-    class ProjectModel *projModel;
+    class TaskModel *taskModel;
     class MainWindow *mainWindow;
     class Task *task;
 };

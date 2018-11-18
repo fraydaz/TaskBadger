@@ -353,6 +353,7 @@ public:
 
         editProj = new QPushButton(projects);
         editProj->setObjectName(QStringLiteral("editProj"));
+        editProj->setEnabled(false);
         QIcon icon10;
         icon10.addFile(QStringLiteral(":/Images/icons8-edit-48.png"), QSize(), QIcon::Normal, QIcon::Off);
         editProj->setIcon(icon10);
@@ -361,6 +362,7 @@ public:
 
         deleteProj = new QPushButton(projects);
         deleteProj->setObjectName(QStringLiteral("deleteProj"));
+        deleteProj->setEnabled(false);
         QIcon icon11;
         icon11.addFile(QStringLiteral(":/Images/icons8-close-window-48.png"), QSize(), QIcon::Normal, QIcon::Off);
         deleteProj->setIcon(icon11);
@@ -634,12 +636,14 @@ public:
 
         edit_task = new QPushButton(tasks);
         edit_task->setObjectName(QStringLiteral("edit_task"));
+        edit_task->setEnabled(false);
         edit_task->setIcon(icon10);
 
         horizontalLayout_6->addWidget(edit_task);
 
         delete_task = new QPushButton(tasks);
         delete_task->setObjectName(QStringLiteral("delete_task"));
+        delete_task->setEnabled(false);
         delete_task->setIcon(icon11);
 
         horizontalLayout_6->addWidget(delete_task);

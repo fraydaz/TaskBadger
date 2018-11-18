@@ -291,6 +291,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="editProj">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Edit</string>
             </property>
@@ -302,6 +305,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="deleteProj">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Delete</string>
             </property>
@@ -772,6 +778,9 @@ background-color: rgb(240, 240, 240);</string>
           </item>
           <item>
            <widget class="QPushButton" name="edit_task">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Edit</string>
             </property>
@@ -783,6 +792,9 @@ background-color: rgb(240, 240, 240);</string>
           </item>
           <item>
            <widget class="QPushButton" name="delete_task">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Delete</string>
             </property>

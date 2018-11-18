@@ -5,15 +5,6 @@ ProjectModel::ProjectModel()
 {
     projectDAO = new ProjectDAO();
     project = new Project();
-    taskDAO = new TaskDAO();
-}
-
-QSqlQueryModel* ProjectModel::setComboBox(QString menu, QString order)
-{
-    QSqlQuery query = projectDAO->getList(menu, order);
-    this->model = new QSqlQueryModel();
-    model->setQuery(query);
-    return model;
 }
 
 QSqlQueryModel* ProjectModel::setTableView(QString view)
@@ -46,40 +37,20 @@ QVBoxLayout* ProjectModel::setProjLayout(QString id)
     //setProjData(newLayout, id);
     newLayout->id->setText(id);
     newLayout->id->setStyleSheet("");
-    newLayout->projName->setText(projectDAO->getProjInfo(id, "name"));
-    newLayout->projPriority->setCurrentText(projectDAO->getProjInfo(id, "priority"));
-    newLayout->projDescription->setText(projectDAO->getProjInfo(id, "description"));
-    QString cost = projectDAO->getProjInfo(id, "total_cost");
+    newLayout->projName->setText(projectDAO->getObjectInfo(id, "name", "project"));
+    newLayout->projPriority->setCurrentText(projectDAO->getObjectInfo(id, "priority", "project"));
+    newLayout->projDescription->setText(projectDAO->getObjectInfo(id, "description", "project"));
+    QString cost = projectDAO->getObjectInfo(id, "total_cost", "project");
     newLayout->projCost->setValue(cost.toDouble());
-    QString statusID = projectDAO->getProjInfo(id, "statusID");
+    QString statusID = projectDAO->getObjectInfo(id, "statusID", "project");
     newLayout->projStatus->setCurrentText(projectDAO->getFkValue("status", statusID));
-    QString catID = projectDAO->getProjInfo(id, "categoryID");
+    QString catID = projectDAO->getObjectInfo(id, "categoryID", "project");
     newLayout->projCategory->setCurrentText(projectDAO->getFkValue("category", catID));
-    newLayout->dueDate->setDate(projectDAO->getProjDate(id, "due_date"));
-    newLayout->createdDate->setDate(projectDAO->getProjDate(id, "date_created"));
+    newLayout->dueDate->setDate(projectDAO->getObjectDate(id, "due_date", "project"));
+    newLayout->createdDate->setDate(projectDAO->getObjectDate(id, "date_created", "project"));
     newLayout->createdDate->setStyleSheet("");
     return projLayout;
 }
-/*QVBoxLayout* ProjectModel::setTaskLayout(QString id)
-{
-    QVBoxLayout *projLayout = new QVBoxLayout;
-    class TabFormLayout *newLayout;
-    newLayout = new TabFormLayout();
-    projLayout = newLayout->setupUi();
-    //setProjData(newLayout, id);
-    newLayout->id->setText(id);
-    newLayout->id->setStyleSheet("");
-    newLayout->projName->setText(taskDAO->getTaskInfo(id, "name"));
-    newLayout->projPriority->setCurrentText(taskDAO->getTaskInfo(id, "priority"));
-    newLayout->projDescription->setText(taskDAO->getTaskInfo(id, "description"));
-    QString statusID = taskDAO->getTaskInfo(id, "statusID");
-    newLayout->projStatus->setCurrentText(taskDAO->getFkValue("status", statusID));
-    QString projectID = taskDAO->getTaskInfo(id, "projectID");
-    newLayout->projCategory->setCurrentText(taskDAO->getFkValue("project", projectID));
-    newLayout->dueDate->setDate(taskDAO->getTaskDate(id, "due_date"));
-    newLayout->createdDate->setStyleSheet("");
-    return projLayout;
-}*/
 /*void ProjectModel::setProjData(TabFormLayout* layout, QString id)
 {
     layout->id->setText(id);

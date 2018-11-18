@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     project = new Project();
     projectModel = new ProjectModel();
     task = new Task();
+    taskModel = new TaskModel();
     setUILayout();
 }
 MainWindow::~MainWindow()
@@ -26,7 +27,6 @@ void MainWindow::setUILayout()
     setComboBox(ui->t_status, "status", "id");
     setComboBox(ui->t_project, "project", "id");
     setTreeView();
-    //setTableViews();
     setTableView(ui->tableView, "projects_view");
     setTableView(ui->projectsView, "projects_view");
     //setTableView(ui->tasksView, "tasks_view");
@@ -64,19 +64,9 @@ void MainWindow::setTaskView(QString view, QString id)
     ui->tasksView->setColumnHidden(0, true);
     ui->tasksView->resizeColumnsToContents();
 }
-/*void MainWindow::setTableViews()
-{
-    // this function currently causes wrong
-    // project # to display in edit project tab
-    model = projectModel->setTableView("projects_view");
-    ui->tableView->setModel(model);
-    ui->projectsView->setModel(model);
-    model = projectModel->setTableView("tasks_view");
-    ui->tasksView->setModel(model);
-}*/
 void MainWindow::setComboBox(QComboBox* menu, QString table, QString column)
 {
-    model = projectModel->setComboBox(table, column);
+    model = projectModel->getComboBox(table, column);
     menu->setModel(model);
 }
 void MainWindow::saveProject()
@@ -96,7 +86,7 @@ void MainWindow::saveProject()
 void MainWindow::saveTask()
 {
     task->setName(ui->t_name->text());
-    task->setDetails(ui->t_description->toPlainText());
+    task->setDescription(ui->t_description->toPlainText());
     task->setPriority(ui->t_priority->currentText());
     task->setDueDate(ui->t_due->date());
     task->setStatusID(ui->t_status->currentText());
@@ -124,18 +114,18 @@ QVBoxLayout* MainWindow::setProjLayout()
     projLayout = layout->setupUi();
     return projLayout;
 }
-/*void MainWindow::editTask(QString id)
+void MainWindow::editTask(QString id)
 {
-    // create layout for view & edit project
+    // create layout for view & edit task
     QVBoxLayout *taskLayout = new QVBoxLayout;
-    taskLayout = projectModel->setTaskLayout(id);
+    taskLayout = taskModel->setTaskLayout(id);
     newTab = new QWidget(ui->task_tabWidget);
 
     // set layout and open new tab
     newTab->setLayout(taskLayout);
     ui->task_tabWidget->addTab(newTab, "Task #" + id);
     ui->task_tabWidget->setCurrentWidget(newTab);
-}*/
+}
 QVBoxLayout* MainWindow::setTaskLayout()
 {
     QVBoxLayout *taskLayout = new QVBoxLayout;
@@ -193,12 +183,16 @@ void MainWindow::on_actionNext_triggered()
 {
     int curr = this->ui->stackedWidget->currentIndex();
     openWidgetPg(curr+1);
+    if (ui->stackedWidget->currentIndex() == tasksPg)
+        setTaskView("project_tasks", projectID);
 }
 
 void MainWindow::on_actionBack_triggered()
 {
     int curr = this->ui->stackedWidget->currentIndex();
     openWidgetPg(curr-1);
+    if (ui->stackedWidget->currentIndex() == projectsPg)
+        setTableView(ui->projectsView, "projects_view");
 }
 
 /**************************************
@@ -228,6 +222,8 @@ void MainWindow::on_urgentProjects_clicked()
 
 void MainWindow::on_projectsView_clicked(const QModelIndex &index)
 {
+    ui->editProj->setEnabled(true);
+    ui->deleteProj->setEnabled(true);
     QModelIndex idIndex = model->index(index.row(), 0, QModelIndex());
     QModelIndex nameIndex = model->index(index.row(), 1, QModelIndex());
     projectID = idIndex.data().toString();
@@ -264,7 +260,7 @@ void MainWindow::on_newProj_clicked()
 void MainWindow::on_deleteProj_clicked()
 {
     // add confirmation before deleting
-    project->delete_project(projectID);
+    project->delete_object("project", projectID);
     setTableView(ui->projectsView, "projects_view");
 }
 
@@ -309,6 +305,7 @@ void MainWindow::on_back_to_project_clicked()
 {
     openWidgetPg(projectsPg);
     openTab(ui->project_tabWidget, viewAllTab);
+    setTableView(ui->projectsView, "projects_view");
 }
 
 void MainWindow::on_task_list_clicked()
@@ -319,16 +316,19 @@ void MainWindow::on_task_list_clicked()
 void MainWindow::on_new_task_clicked()
 {
     openTab(ui->task_tabWidget, createNewTab);
+    setComboBox(ui->t_project, "project", "id");
+    ui->t_project->setCurrentText(task->getProjectName(projectID));
+    setTaskView("project_tasks", projectID);
 }
 
 void MainWindow::on_edit_task_clicked()
 {
-    //editTask(taskID);
+    editTask(taskID);
 }
 
 void MainWindow::on_delete_task_clicked()
 {
-    task->delete_task(taskID);
+    task->delete_object("task", taskID);
     setTableView(ui->tasksView, "tasks_view");
 }
 
@@ -349,6 +349,8 @@ void MainWindow::on_task_cancel_clicked()
 
 void MainWindow::on_tasksView_clicked(const QModelIndex &index)
 {
+    ui->edit_task->setEnabled(true);
+    ui->delete_task->setEnabled(true);
     QModelIndex idIndex = model->index(index.row(), 0, QModelIndex());
     taskID = idIndex.data().toString();
     qDebug() << "Task ID: " << taskID;
@@ -356,5 +358,5 @@ void MainWindow::on_tasksView_clicked(const QModelIndex &index)
 
 void MainWindow::on_tasksView_doubleClicked(const QModelIndex &index)
 {
-
+    editTask(taskID);
 }

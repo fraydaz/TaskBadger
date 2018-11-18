@@ -1,188 +1,202 @@
 #include "taskformlayout.h"
 
-/*TaskFormLayout::TaskFormLayout()
+TaskFormLayout::TaskFormLayout()
 {
-    projModel = new ProjectModel();
+    taskModel = new TaskModel();
     mainWindow = new MainWindow();
     task = new Task();
     setupUi();
 }
-TaskFormLayout::setupUi()
+QVBoxLayout* TaskFormLayout::setupUi()
 {
     vLayout = new QVBoxLayout();
     vLayout->setSpacing(6);
     vLayout->setContentsMargins(11, 11, 11, 11);
     vLayout->setObjectName(QStringLiteral("vLayout"));
 
-    formLayout = new QFormLayout();
-    formLayout->setSpacing(6);
-    formLayout->setObjectName(QStringLiteral("formLayout"));
+    fLayout = new QFormLayout();
+    fLayout->setSpacing(6);
+    fLayout->setObjectName(QStringLiteral("fLayout"));
 
-    taskName = new QLabel();
-    taskName->setObjectName(QStringLiteral("taskName"));
+    tName = new QLabel();
+    tName->setObjectName(QStringLiteral("tName"));
+    fLayout->setWidget(0, QFormLayout::LabelRole, tName);
 
-    formLayout->setWidget(0, QFormLayout::LabelRole, taskName);
+    name = new QLineEdit();
+    name->setObjectName(QStringLiteral("name"));
+    fLayout->setWidget(0, QFormLayout::FieldRole, name);
 
-    t_name = new QLineEdit();
-    t_name->setObjectName(QStringLiteral("t_name"));
+    tProject = new QLabel();
+    tProject->setObjectName(QStringLiteral("tProject"));
+    fLayout->setWidget(1, QFormLayout::LabelRole, tProject);
 
-    formLayout->setWidget(0, QFormLayout::FieldRole, t_name);
+    project = new QComboBox();
+    project->setObjectName(QStringLiteral("project"));
+    fLayout->setWidget(1, QFormLayout::FieldRole, project);
+    vLayout->addLayout(fLayout);
 
-    taskProject = new QLabel();
-    taskProject->setObjectName(QStringLiteral("taskProject"));
+    gLayout = new QGridLayout();
+    gLayout->setSpacing(6);
+    gLayout->setObjectName(QStringLiteral("gLayout"));
 
-    formLayout->setWidget(1, QFormLayout::LabelRole, taskProject);
-
-    t_project = new QComboBox();
-    t_project->setObjectName(QStringLiteral("t_project"));
-
-    formLayout->setWidget(1, QFormLayout::FieldRole, t_project);
-
-
-    vLayout->addLayout(formLayout);
-
-    gridLayout = new QGridLayout();
-    gridLayout->setSpacing(6);
-    gridLayout->setObjectName(QStringLiteral("gridLayout"));
-    taskNum = new QLabel();
-    taskNum->setObjectName(QStringLiteral("taskNum"));
+    tNum = new QLabel();
+    tNum->setObjectName(QStringLiteral("tNum"));
     QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     sizePolicy.setHorizontalStretch(0);
     sizePolicy.setVerticalStretch(0);
-    sizePolicy.setHeightForWidth(taskNum->sizePolicy().hasHeightForWidth());
-    taskNum->setSizePolicy(sizePolicy);
-    taskNum->setMinimumSize(QSize(40, 0));
-    taskNum->setMaximumSize(QSize(60, 16777215));
+    sizePolicy.setHeightForWidth(tNum->sizePolicy().hasHeightForWidth());
+    tNum->setSizePolicy(sizePolicy);
+    tNum->setMinimumSize(QSize(40, 0));
+    tNum->setMaximumSize(QSize(60, 16777215));
 
-    gridLayout->addWidget(taskNum, 1, 0, 1, 1);
+    gLayout->addWidget(tNum, 1, 0, 1, 1);
 
-    t_status = new QComboBox();
-    t_status->setObjectName(QStringLiteral("t_status"));
+    status = new QComboBox();
+    status->setObjectName(QStringLiteral("status"));
+    gLayout->addWidget(status, 1, 5, 1, 1);
 
-    gridLayout->addWidget(t_status, 1, 5, 1, 1);
+    tPriority = new QLabel();
+    tPriority->setObjectName(QStringLiteral("tPriority"));
+    tPriority->setMaximumSize(QSize(60, 16777215));
+    gLayout->addWidget(tPriority, 1, 2, 1, 1);
 
-    taskPriority = new QLabel();
-    taskPriority->setObjectName(QStringLiteral("taskPriority"));
-    taskPriority->setMaximumSize(QSize(60, 16777215));
+    priority = new QComboBox();
+    priority->addItem(QString());
+    priority->addItem(QString());
+    priority->addItem(QString());
+    priority->addItem(QString());
+    priority->addItem(QString());
+    priority->setObjectName(QStringLiteral("priority"));
+    gLayout->addWidget(priority, 1, 3, 1, 1);
 
-    gridLayout->addWidget(taskPriority, 1, 2, 1, 1);
+    number = new QLineEdit();
+    number->setObjectName(QStringLiteral("number"));
+    number->setMaximumSize(QSize(100, 16777215));
+    number->setStyleSheet(QStringLiteral("background-color: rgb(223, 223, 223);"));
+    number->setReadOnly(true);
+    number->setClearButtonEnabled(false);
+    gLayout->addWidget(number, 1, 1, 1, 1);
 
-    t_priority = new QComboBox();
-    t_priority->addItem(QString());
-    t_priority->addItem(QString());
-    t_priority->addItem(QString());
-    t_priority->addItem(QString());
-    t_priority->addItem(QString());
-    t_priority->setObjectName(QStringLiteral("t_priority"));
+    tStatus = new QLabel();
+    tStatus->setObjectName(QStringLiteral("tStatus"));
+    tStatus->setMaximumSize(QSize(60, 16777215));
+    gLayout->addWidget(tStatus, 1, 4, 1, 1);
 
-    gridLayout->addWidget(t_priority, 1, 3, 1, 1);
+    tDue = new QLabel();
+    tDue->setObjectName(QStringLiteral("tDue"));
+    tDue->setMaximumSize(QSize(60, 16777215));
+    gLayout->addWidget(tDue, 1, 6, 1, 1);
 
-    t_num = new QLineEdit();
-    t_num->setObjectName(QStringLiteral("t_num"));
-    t_num->setMaximumSize(QSize(100, 16777215));
-    t_num->setStyleSheet(QStringLiteral("background-color: rgb(223, 223, 223);"));
-    t_num->setReadOnly(true);
-    t_num->setClearButtonEnabled(false);
+    due = new QDateEdit();
+    due->setObjectName(QStringLiteral("due"));
+    due->setCalendarPopup(true);
+    gLayout->addWidget(due, 1, 7, 1, 1);
 
-    gridLayout->addWidget(t_num, 1, 1, 1, 1);
+    gridSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    gLayout->addItem(gridSpacer, 0, 0, 1, 2);
 
-    taskStatus = new QLabel();
-    taskStatus->setObjectName(QStringLiteral("taskStatus"));
-    taskStatus->setMaximumSize(QSize(60, 16777215));
+    vLayout->addLayout(gLayout);
 
-    gridLayout->addWidget(taskStatus, 1, 4, 1, 1);
+    hSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-    taskDue = new QLabel();
-    taskDue->setObjectName(QStringLiteral("taskDue"));
-    taskDue->setMaximumSize(QSize(60, 16777215));
+    vLayout->addItem(hSpacer);
 
-    gridLayout->addWidget(taskDue, 1, 6, 1, 1);
+    detailsLayout = new QHBoxLayout();
+    detailsLayout->setSpacing(6);
+    detailsLayout->setObjectName(QStringLiteral("detailsLayout"));
+    tDetails = new QLabel();
+    tDetails->setObjectName(QStringLiteral("tDetails"));
+    detailsLayout->addWidget(tDetails);
 
-    t_due = new QDateEdit();
-    t_due->setObjectName(QStringLiteral("t_due"));
-    t_due->setCalendarPopup(true);
+    description = new QTextEdit();
+    description->setObjectName(QStringLiteral("description;"));
+    detailsLayout->addWidget(description);
 
-    gridLayout->addWidget(t_due, 1, 7, 1, 1);
+    vLayout->addLayout(detailsLayout);
 
-    horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    buttonsLayout = new QHBoxLayout();
+    buttonsLayout->setSpacing(6);
+    buttonsLayout->setObjectName(QStringLiteral("buttonsLayout"));
+    buttonSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    buttonsLayout->addItem(buttonSpacer);
 
-    gridLayout->addItem(horizontalSpacer_5, 0, 0, 1, 2);
+    taskSave = new QPushButton();
+    taskSave->setObjectName(QStringLiteral("taskSave"));
 
+    QFont font1;
+    font1.setPointSize(10);
+    taskSave->setFont(font1);
 
-    vLayout->addLayout(gridLayout);
+    QIcon icon13;
+    icon13.addFile(QStringLiteral(":/Images/icons8-save-all-48.png"), QSize(), QIcon::Normal, QIcon::Off);
+    taskSave->setIcon(icon13);
+    buttonsLayout->addWidget(taskSave);
 
-    horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    taskCancel = new QPushButton();
+    taskCancel->setObjectName(QStringLiteral("taskCancel"));
 
-    vLayout->addItem(horizontalSpacer);
+    taskCancel->setFont(font1);
+    QIcon icon11;
+    icon11.addFile(QStringLiteral(":/Images/icons8-close-window-48.png"), QSize(), QIcon::Normal, QIcon::Off);
+    taskCancel->setIcon(icon11);
 
-    horizontalLayout_15 = new QHBoxLayout();
-    horizontalLayout_15->setSpacing(6);
-    horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
-    taskDetails = new QLabel();
-    taskDetails->setObjectName(QStringLiteral("taskDetails"));
+    buttonsLayout->addWidget(taskCancel);
 
-    horizontalLayout_15->addWidget(taskDetails);
+    vLayout->addLayout(buttonsLayout);
 
-    t_description = new QTextEdit();
-    t_description->setObjectName(QStringLiteral("t_description"));
-
-    horizontalLayout_15->addWidget(t_description);
-
-
-    vLayout->addLayout(horizontalLayout_15);
-
-    horizontalLayout_16 = new QHBoxLayout();
-    horizontalLayout_16->setSpacing(6);
-    horizontalLayout_16->setObjectName(QStringLiteral("horizontalLayout_16"));
-    horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-    horizontalLayout_16->addItem(horizontalSpacer_10);
-
-    task_save = new QPushButton();
-    task_save->setObjectName(QStringLiteral("task_save"));
-    task_save->setFont(font1);
-    task_save->setIcon(icon13);
-
-    horizontalLayout_16->addWidget(task_save);
-
-    task_cancel = new QPushButton();
-    task_cancel->setObjectName(QStringLiteral("task_cancel"));
-    task_cancel->setFont(font1);
-    task_cancel->setIcon(icon11);
-
-    horizontalLayout_16->addWidget(task_cancel);
-
-    vLayout->addLayout(horizontalLayout_16);
-
-    taskName->setBuddy(name);
-    taskProject->setBuddy(t_project);
-    taskNum->setBuddy(num);
-    taskPriority->setBuddy(priority);
-    taskStatus->setBuddy(status);
-    taskDue->setBuddy(due);
-    taskDetails->setBuddy(description);
+    tName->setBuddy(name);
+    tProject->setBuddy(project);
+    tNum->setBuddy(number);
+    tPriority->setBuddy(priority);
+    tStatus->setBuddy(status);
+    tDue->setBuddy(due);
+    tDetails->setBuddy(description);
 
     retranslateUi();
-    //QMetaObject::connectSlotsByName(MainWindow);
     return vLayout;
 }
 
-TaskFormLayout::retranslateUi()
+void TaskFormLayout::retranslateUi()
 {
-    taskName->setText("Task Name:");
-    taskProject->setText("Parent Project:");
-    taskNum->setText("Task #:");
-    taskPriority->setText("Priority:");
-    t_priority->setItemText(0, "Normal");
-    t_priority->setItemText(1, "High");
-    t_priority->setItemText(2, "Highest");
-    t_priority->setItemText(3, "Low");
-    t_priority->setItemText(4, "Lowest");
+    tName->setText("Task Name:");
+    tProject->setText("Parent Project:");
+    tNum->setText("Task #:");
+    tPriority->setText("Priority:");
+    priority->setItemText(0, "Normal");
+    priority->setItemText(1, "High");
+    priority->setItemText(2, "Highest");
+    priority->setItemText(3, "Low");
+    priority->setItemText(4, "Lowest");
 
-    taskStatus->setText("Status:");
-    taskDue->setText("Due Date:");
-    t_due->setDisplayFormat("MM/dd/yyyy");
-    taskDetails->setText("Details:");
-    task_save->setText("Save");
-    task_cancel->setText("Cancel");
-}*/
+    tStatus->setText("Status:");
+    tDue->setText("Due Date:");
+    due->setDisplayFormat("MM/dd/yyyy");
+    tDetails->setText("Details:");
+    taskSave->setText("Save");
+    taskCancel->setText("Cancel");
+
+    due->setDate(QDate::currentDate());
+
+    model = taskModel->getComboBox("status", "id");
+    status->setModel(model);
+
+    model = taskModel->getComboBox("project", "id");
+    project->setModel(model);
+    project->setEnabled(false);
+
+    connect(taskSave, SIGNAL(clicked()), this, SLOT(saveTask()));
+    connect(taskCancel, SIGNAL(clicked()), this, SLOT(cancelTask()));
+}
+void TaskFormLayout::saveTask()
+{
+    task->setName(name->text());
+    task->setDescription(description->toPlainText());
+    task->setPriority(priority->currentText());
+    task->setDueDate(due->date());
+    task->setStatusID(status->currentText());
+    task->update_task(number->text());
+}
+void TaskFormLayout::cancelTask()
+{
+    mainWindow->openWidgetPg(0);
+}

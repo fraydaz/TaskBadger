@@ -20,11 +20,12 @@
 #include <QSqlQueryModel>
 #include "projectmodel.h"
 #include "project.h"
+#include "dbobject.h"
 #include "mainwindow.h"
 
 QT_BEGIN_NAMESPACE
 
-class TabFormLayout : public QMainWindow
+class TabFormLayout : public QMainWindow, public DBObject
 {
     Q_OBJECT
 
@@ -72,13 +73,10 @@ private:
 
     QSpacerItem *horizontalSpacer;
 
-
-
     QSqlQueryModel *model;
     class ProjectModel *projModel;
     class MainWindow *mainWindow;
     class Project *project;
-
 };
 
 #endif // TABFORMLAYOUT_H

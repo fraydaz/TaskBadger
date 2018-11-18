@@ -2,8 +2,11 @@
 #define MAINWINDOW_H
 
 #include "project.h"
-#include "projectmodel.h"
 #include "task.h"
+#include "projectmodel.h"
+#include "taskmodel.h"
+#include "objectmodel.h"
+
 #include <QMainWindow>
 #include <QtCore>
 #include <QtGui>
@@ -36,7 +39,7 @@ public:
     void saveProject();
     void saveTask();
     void setTreeView();
-    void setTableViews();
+
     void setTableView(QTableView *table, QString view);
     void setTaskView(QString view, QString id);
 
@@ -120,14 +123,16 @@ private:
     class Project *project;
     class ProjectModel *projectModel;
     class Task* task;
+    class TaskModel *taskModel;
 
     int viewAllTab = 0;
     int createNewTab = 1;
-    int projectTab = 0;
+
     int dashboardPg = 0;
     int projectsPg = 1;
     int tasksPg = 2;
     int listsPg = 3;
+
     QString projectID = "0";
     QString projectName = "";
     QString taskID = "0";
