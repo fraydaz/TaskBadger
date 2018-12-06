@@ -17,5 +17,6 @@
         <file>Images/icons8-task-planning-24.png</file>
         <file>Images/icons8-tasks-48.png</file>
         <file>Images/icons8-to-do-48.png</file>
+        <file>Images/taskbadgericon.ico</file>
     </qresource>
 </RCC>

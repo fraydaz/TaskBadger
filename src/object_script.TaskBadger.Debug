@@ -15,6 +15,12 @@ INPUT(
 ./debug\taskmodel.o
 ./debug\formlayout.o
 ./debug\projectformlayout.o
+./debug\list.o
+./debug\listdao.o
+./debug\listmodel.o
+./debug\listformlayout.o
+./debug\listitem.o
+./debug\itemdao.o
 ./debug\qrc_myres.o
 ./debug\moc_mainwindow.o
 ./debug\moc_formlayout.o

@@ -39,7 +39,13 @@ SOURCES += \
     objectmodel.cpp \
     taskmodel.cpp \
     formlayout.cpp \
-    projectformlayout.cpp
+    projectformlayout.cpp \
+    list.cpp \
+    listdao.cpp \
+    listmodel.cpp \
+    listformlayout.cpp \
+    listitem.cpp \
+    itemdao.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -56,7 +62,13 @@ HEADERS += \
     objectmodel.h \
     taskmodel.h \
     formlayout.h \
-    projectformlayout.h
+    projectformlayout.h \
+    list.h \
+    listdao.h \
+    listmodel.h \
+    listformlayout.h \
+    listitem.h \
+    itemdao.h
 
 FORMS += \
         mainwindow.ui

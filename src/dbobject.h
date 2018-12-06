@@ -20,6 +20,7 @@ public:
     virtual QDateTime getDateCreated() const;
     virtual QString getCategory() const;
     virtual QString getProject() const;
+    virtual QString getCatID(const QString& catVal) const;
 
     // Virtual functions to set values
     // for database objects
@@ -32,6 +33,8 @@ public:
     virtual void setStatusID(const QString& statusVal);
     virtual void setCatID(const QString& catVal);
     virtual void setProjectID(const QString& projectVal);
+    virtual void setTaskID(const QString& taskVal);
+    virtual void setListID(const QString& listVal);
 
     virtual void delete_object(QString table, QString id);
 
@@ -57,6 +60,10 @@ protected:
     int oCatID;
     QString oProject;
     int oProjectID;
+    int oTaskID;
+    QString oTask;
+    int oListID;
+    QString oList;
 };
 
 #endif // DBOBJECT_H

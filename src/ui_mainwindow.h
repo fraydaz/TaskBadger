@@ -23,12 +23,12 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -52,15 +52,17 @@ public:
     QAction *actionRefresh;
     QAction *actionHome;
     QWidget *centralWidget;
+    QVBoxLayout *verticalLayout_2;
     QStackedWidget *stackedWidget;
     QWidget *page;
-    QVBoxLayout *verticalLayout_2;
-    QHBoxLayout *horizontalLayout;
-    QFrame *frame;
-    QSpacerItem *horizontalSpacer_2;
-    QLabel *label;
-    QSpacerItem *horizontalSpacer_4;
-    QSplitter *splitter;
+    QGridLayout *gridLayout_10;
+    QGridLayout *gridLayout_8;
+    QHBoxLayout *horizontalLayout_20;
+    QFrame *frame_10;
+    QSpacerItem *horizontalSpacer_31;
+    QLabel *label_10;
+    QSpacerItem *horizontalSpacer_32;
+    QHBoxLayout *horizontalLayout_17;
     QTreeView *treeView;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout_2;
@@ -69,9 +71,15 @@ public:
     QPushButton *upcomingDeadlines;
     QPushButton *urgentProjects;
     QWidget *page_2;
+    QGridLayout *gridLayout_9;
+    QHBoxLayout *horizontalLayout_7;
+    QFrame *frame_4;
+    QSpacerItem *horizontalSpacer_19;
+    QLabel *label_4;
+    QSpacerItem *horizontalSpacer_20;
     QTabWidget *project_tabWidget;
     QWidget *projects;
-    QVBoxLayout *verticalLayout_5;
+    QGridLayout *gridLayout_4;
     QTableView *projectsView;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer_7;
@@ -80,9 +88,8 @@ public:
     QPushButton *newProj;
     QPushButton *editProj;
     QPushButton *deleteProj;
-    QPushButton *searchProj;
     QWidget *newProject;
-    QVBoxLayout *verticalLayout_6;
+    QGridLayout *gridLayout_5;
     QHBoxLayout *horizontalLayout_9;
     QLabel *ProjName;
     QLineEdit *name;
@@ -114,12 +121,14 @@ public:
     QPushButton *ProjSave;
     QPushButton *ProjCancel;
     QWidget *page_3;
+    QGridLayout *gridLayout_7;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_14;
+    QFrame *frame_7;
+    QLineEdit *projectInfo;
     QTabWidget *task_tabWidget;
     QWidget *tasks;
     QVBoxLayout *verticalLayout_7;
-    QSpacerItem *horizontalSpacer_14;
-    QLineEdit *projectInfo;
-    QSpacerItem *horizontalSpacer_13;
     QTableView *tasksView;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_9;
@@ -128,7 +137,6 @@ public:
     QPushButton *new_task;
     QPushButton *edit_task;
     QPushButton *delete_task;
-    QPushButton *search_task;
     QWidget *new_taskTab;
     QVBoxLayout *verticalLayout_3;
     QFormLayout *formLayout;
@@ -155,6 +163,61 @@ public:
     QPushButton *task_save;
     QPushButton *task_cancel;
     QWidget *page_4;
+    QGridLayout *gridLayout_3;
+    QHBoxLayout *horizontalLayout;
+    QFrame *frame_8;
+    QLineEdit *listInfo;
+    QTabWidget *list_tabWidget;
+    QWidget *lists;
+    QVBoxLayout *verticalLayout_8;
+    QTableView *listsView;
+    QHBoxLayout *horizontalLayout_13;
+    QSpacerItem *horizontalSpacer_15;
+    QPushButton *back_button;
+    QPushButton *new_list;
+    QPushButton *edit_list;
+    QPushButton *delete_list;
+    QWidget *new_ListTab;
+    QGridLayout *gridLayout_13;
+    QHBoxLayout *horizontalLayout_4;
+    QFormLayout *formLayout_4;
+    QLabel *listName;
+    QLineEdit *l_name;
+    QLabel *listProject;
+    QComboBox *l_project;
+    QLabel *listTask;
+    QComboBox *l_task;
+    QLabel *listItem;
+    QLineEdit *l_item;
+    QPushButton *addItem;
+    QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *horizontalSpacer_16;
+    QSpacerItem *verticalSpacer_4;
+    QSpacerItem *verticalSpacer_3;
+    QVBoxLayout *verticalLayout_4;
+    QListView *itemsView;
+    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer_17;
+    QPushButton *list_save;
+    QPushButton *list_cancel;
+    QWidget *page_5;
+    QGridLayout *gridLayout_11;
+    QGridLayout *gridLayout_6;
+    QHBoxLayout *horizontalLayout_19;
+    QFrame *frame_9;
+    QSpacerItem *horizontalSpacer_29;
+    QLabel *label_9;
+    QSpacerItem *horizontalSpacer_30;
+    QTableView *upcomingDue;
+    QWidget *page_6;
+    QGridLayout *gridLayout_25;
+    QGridLayout *gridLayout_12;
+    QHBoxLayout *horizontalLayout_21;
+    QFrame *frame_11;
+    QSpacerItem *horizontalSpacer_33;
+    QLabel *label_11;
+    QSpacerItem *horizontalSpacer_34;
+    QTableView *urgentProj;
     QStatusBar *statusBar;
     QToolBar *mainToolBar;
     QMenuBar *menuBar;
@@ -164,10 +227,11 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(830, 574);
+        MainWindow->resize(879, 637);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Images/TaskBadgerLogo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/Images/taskbadgericon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
+        MainWindow->setDockNestingEnabled(true);
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName(QStringLiteral("actionNew"));
         actionOpen = new QAction(MainWindow);
@@ -197,64 +261,82 @@ public:
         actionHome->setIcon(icon4);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        stackedWidget = new QStackedWidget(centralWidget);
-        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(10, 0, 812, 481));
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        verticalLayout_2 = new QVBoxLayout(page);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy);
+        verticalLayout_2 = new QVBoxLayout(centralWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        frame = new QFrame(page);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setMinimumSize(QSize(86, 86));
-        frame->setMaximumSize(QSize(108, 108));
-        frame->setStyleSheet(QStringLiteral("image: url(:/Images/TaskBadgerLogo.png);"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-
-        horizontalLayout->addWidget(frame);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_2);
-
-        label = new QLabel(page);
-        label->setObjectName(QStringLiteral("label"));
+        stackedWidget = new QStackedWidget(centralWidget);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         QFont font;
-        font.setFamily(QStringLiteral("MV Boli"));
-        font.setPointSize(28);
-        font.setBold(true);
-        font.setWeight(75);
-        label->setFont(font);
+        font.setPointSize(10);
+        stackedWidget->setFont(font);
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        gridLayout_10 = new QGridLayout(page);
+        gridLayout_10->setSpacing(6);
+        gridLayout_10->setContentsMargins(11, 11, 11, 11);
+        gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
+        gridLayout_8 = new QGridLayout();
+        gridLayout_8->setSpacing(6);
+        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        horizontalLayout_20 = new QHBoxLayout();
+        horizontalLayout_20->setSpacing(6);
+        horizontalLayout_20->setObjectName(QStringLiteral("horizontalLayout_20"));
+        frame_10 = new QFrame(page);
+        frame_10->setObjectName(QStringLiteral("frame_10"));
+        frame_10->setMinimumSize(QSize(60, 60));
+        frame_10->setMaximumSize(QSize(108, 108));
+        frame_10->setStyleSheet(QStringLiteral("image: url(:/Images/TaskBadgerLogo.png);"));
+        frame_10->setFrameShape(QFrame::StyledPanel);
+        frame_10->setFrameShadow(QFrame::Raised);
 
-        horizontalLayout->addWidget(label);
+        horizontalLayout_20->addWidget(frame_10);
 
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_31 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer_4);
+        horizontalLayout_20->addItem(horizontalSpacer_31);
+
+        label_10 = new QLabel(page);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        QFont font1;
+        font1.setFamily(QStringLiteral("MV Boli"));
+        font1.setPointSize(24);
+        font1.setBold(false);
+        font1.setWeight(50);
+        label_10->setFont(font1);
+
+        horizontalLayout_20->addWidget(label_10);
+
+        horizontalSpacer_32 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_20->addItem(horizontalSpacer_32);
 
 
-        verticalLayout_2->addLayout(horizontalLayout);
+        gridLayout_8->addLayout(horizontalLayout_20, 0, 0, 1, 1);
 
-        splitter = new QSplitter(page);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setOrientation(Qt::Horizontal);
-        treeView = new QTreeView(splitter);
+        horizontalLayout_17 = new QHBoxLayout();
+        horizontalLayout_17->setSpacing(6);
+        horizontalLayout_17->setObjectName(QStringLiteral("horizontalLayout_17"));
+        treeView = new QTreeView(page);
         treeView->setObjectName(QStringLiteral("treeView"));
         treeView->setMinimumSize(QSize(0, 270));
         treeView->setMaximumSize(QSize(190, 16777215));
-        splitter->addWidget(treeView);
-        tableView = new QTableView(splitter);
+
+        horizontalLayout_17->addWidget(treeView);
+
+        tableView = new QTableView(page);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setMinimumSize(QSize(550, 300));
-        splitter->addWidget(tableView);
 
-        verticalLayout_2->addWidget(splitter);
+        horizontalLayout_17->addWidget(tableView);
+
+
+        gridLayout_8->addLayout(horizontalLayout_17, 1, 0, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -265,9 +347,7 @@ public:
 
         createProject = new QPushButton(page);
         createProject->setObjectName(QStringLiteral("createProject"));
-        QFont font1;
-        font1.setPointSize(10);
-        createProject->setFont(font1);
+        createProject->setFont(font);
         createProject->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon5;
         icon5.addFile(QStringLiteral(":/Images/icons8-plus-48.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -277,7 +357,7 @@ public:
 
         upcomingDeadlines = new QPushButton(page);
         upcomingDeadlines->setObjectName(QStringLiteral("upcomingDeadlines"));
-        upcomingDeadlines->setFont(font1);
+        upcomingDeadlines->setFont(font);
         upcomingDeadlines->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon6;
         icon6.addFile(QStringLiteral(":/Images/icons8-calendar-48.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -287,7 +367,7 @@ public:
 
         urgentProjects = new QPushButton(page);
         urgentProjects->setObjectName(QStringLiteral("urgentProjects"));
-        urgentProjects->setFont(font1);
+        urgentProjects->setFont(font);
         urgentProjects->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon7;
         icon7.addFile(QStringLiteral(":/Images/icons8-high-priority-48.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -296,16 +376,52 @@ public:
         horizontalLayout_2->addWidget(urgentProjects);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_2);
+        gridLayout_8->addLayout(horizontalLayout_2, 2, 0, 1, 1);
+
+
+        gridLayout_10->addLayout(gridLayout_8, 0, 0, 1, 1);
 
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
+        gridLayout_9 = new QGridLayout(page_2);
+        gridLayout_9->setSpacing(6);
+        gridLayout_9->setContentsMargins(11, 11, 11, 11);
+        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        frame_4 = new QFrame(page_2);
+        frame_4->setObjectName(QStringLiteral("frame_4"));
+        frame_4->setMinimumSize(QSize(60, 60));
+        frame_4->setMaximumSize(QSize(108, 108));
+        frame_4->setStyleSheet(QStringLiteral("image: url(:/Images/TaskBadgerLogo.png);"));
+        frame_4->setFrameShape(QFrame::StyledPanel);
+        frame_4->setFrameShadow(QFrame::Raised);
+
+        horizontalLayout_7->addWidget(frame_4);
+
+        horizontalSpacer_19 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_19);
+
+        label_4 = new QLabel(page_2);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setFont(font1);
+
+        horizontalLayout_7->addWidget(label_4);
+
+        horizontalSpacer_20 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_20);
+
+
+        gridLayout_9->addLayout(horizontalLayout_7, 0, 0, 1, 1);
+
         project_tabWidget = new QTabWidget(page_2);
         project_tabWidget->setObjectName(QStringLiteral("project_tabWidget"));
-        project_tabWidget->setGeometry(QRect(10, 0, 791, 481));
         QFont font2;
-        font2.setPointSize(8);
+        font2.setPointSize(10);
         font2.setBold(false);
         font2.setWeight(50);
         project_tabWidget->setFont(font2);
@@ -313,14 +429,14 @@ public:
         project_tabWidget->setMovable(true);
         projects = new QWidget();
         projects->setObjectName(QStringLiteral("projects"));
-        verticalLayout_5 = new QVBoxLayout(projects);
-        verticalLayout_5->setSpacing(6);
-        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        gridLayout_4 = new QGridLayout(projects);
+        gridLayout_4->setSpacing(6);
+        gridLayout_4->setContentsMargins(11, 11, 11, 11);
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         projectsView = new QTableView(projects);
         projectsView->setObjectName(QStringLiteral("projectsView"));
 
-        verticalLayout_5->addWidget(projectsView);
+        gridLayout_4->addWidget(projectsView, 0, 0, 1, 1);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
@@ -369,24 +485,16 @@ public:
 
         horizontalLayout_5->addWidget(deleteProj);
 
-        searchProj = new QPushButton(projects);
-        searchProj->setObjectName(QStringLiteral("searchProj"));
-        QIcon icon12;
-        icon12.addFile(QStringLiteral(":/Images/icons8-search-48.png"), QSize(), QIcon::Normal, QIcon::Off);
-        searchProj->setIcon(icon12);
 
-        horizontalLayout_5->addWidget(searchProj);
-
-
-        verticalLayout_5->addLayout(horizontalLayout_5);
+        gridLayout_4->addLayout(horizontalLayout_5, 1, 0, 1, 1);
 
         project_tabWidget->addTab(projects, QString());
         newProject = new QWidget();
         newProject->setObjectName(QStringLiteral("newProject"));
-        verticalLayout_6 = new QVBoxLayout(newProject);
-        verticalLayout_6->setSpacing(6);
-        verticalLayout_6->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        gridLayout_5 = new QGridLayout(newProject);
+        gridLayout_5->setSpacing(6);
+        gridLayout_5->setContentsMargins(11, 11, 11, 11);
+        gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
@@ -401,11 +509,11 @@ public:
         horizontalLayout_9->addWidget(name);
 
 
-        verticalLayout_6->addLayout(horizontalLayout_9);
+        gridLayout_5->addLayout(horizontalLayout_9, 0, 0, 1, 1);
 
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        verticalLayout_6->addItem(horizontalSpacer_6);
+        gridLayout_5->addItem(horizontalSpacer_6, 1, 0, 1, 1);
 
         formLayout_2 = new QFormLayout();
         formLayout_2->setSpacing(6);
@@ -510,11 +618,11 @@ public:
         formLayout_2->setLayout(0, QFormLayout::FieldRole, gridLayout_2);
 
 
-        verticalLayout_6->addLayout(formLayout_2);
+        gridLayout_5->addLayout(formLayout_2, 2, 0, 1, 1);
 
         horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        verticalLayout_6->addItem(horizontalSpacer_11);
+        gridLayout_5->addItem(horizontalSpacer_11, 3, 0, 1, 1);
 
         horizontalLayout_11 = new QHBoxLayout();
         horizontalLayout_11->setSpacing(6);
@@ -530,11 +638,11 @@ public:
         horizontalLayout_11->addWidget(description);
 
 
-        verticalLayout_6->addLayout(horizontalLayout_11);
+        gridLayout_5->addLayout(horizontalLayout_11, 4, 0, 1, 1);
 
         horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        verticalLayout_6->addItem(horizontalSpacer_12);
+        gridLayout_5->addItem(horizontalSpacer_12, 5, 0, 1, 1);
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setSpacing(6);
@@ -545,30 +653,69 @@ public:
 
         ProjSave = new QPushButton(newProject);
         ProjSave->setObjectName(QStringLiteral("ProjSave"));
-        ProjSave->setFont(font1);
-        QIcon icon13;
-        icon13.addFile(QStringLiteral(":/Images/icons8-save-all-48.png"), QSize(), QIcon::Normal, QIcon::Off);
-        ProjSave->setIcon(icon13);
+        ProjSave->setFont(font);
+        QIcon icon12;
+        icon12.addFile(QStringLiteral(":/Images/icons8-save-all-48.png"), QSize(), QIcon::Normal, QIcon::Off);
+        ProjSave->setIcon(icon12);
 
         horizontalLayout_12->addWidget(ProjSave);
 
         ProjCancel = new QPushButton(newProject);
         ProjCancel->setObjectName(QStringLiteral("ProjCancel"));
-        ProjCancel->setFont(font1);
+        ProjCancel->setFont(font);
         ProjCancel->setIcon(icon11);
 
         horizontalLayout_12->addWidget(ProjCancel);
 
 
-        verticalLayout_6->addLayout(horizontalLayout_12);
+        gridLayout_5->addLayout(horizontalLayout_12, 6, 0, 1, 1);
 
         project_tabWidget->addTab(newProject, QString());
+
+        gridLayout_9->addWidget(project_tabWidget, 1, 0, 1, 1);
+
         stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
+        gridLayout_7 = new QGridLayout(page_3);
+        gridLayout_7->setSpacing(6);
+        gridLayout_7->setContentsMargins(11, 11, 11, 11);
+        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_14 = new QHBoxLayout();
+        horizontalLayout_14->setSpacing(6);
+        horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
+        frame_7 = new QFrame(page_3);
+        frame_7->setObjectName(QStringLiteral("frame_7"));
+        frame_7->setMinimumSize(QSize(60, 60));
+        frame_7->setMaximumSize(QSize(108, 108));
+        frame_7->setStyleSheet(QStringLiteral("image: url(:/Images/TaskBadgerLogo.png);"));
+        frame_7->setFrameShape(QFrame::StyledPanel);
+        frame_7->setFrameShadow(QFrame::Raised);
+
+        horizontalLayout_14->addWidget(frame_7);
+
+        projectInfo = new QLineEdit(page_3);
+        projectInfo->setObjectName(QStringLiteral("projectInfo"));
+        QFont font3;
+        font3.setFamily(QStringLiteral("MV Boli"));
+        font3.setPointSize(18);
+        projectInfo->setFont(font3);
+        projectInfo->setCursor(QCursor(Qt::ArrowCursor));
+        projectInfo->setStyleSheet(QStringLiteral("background-color: rgb(240, 240, 240);"));
+        projectInfo->setFrame(false);
+        projectInfo->setAlignment(Qt::AlignCenter);
+        projectInfo->setReadOnly(true);
+
+        horizontalLayout_14->addWidget(projectInfo);
+
+
+        verticalLayout->addLayout(horizontalLayout_14);
+
         task_tabWidget = new QTabWidget(page_3);
         task_tabWidget->setObjectName(QStringLiteral("task_tabWidget"));
-        task_tabWidget->setGeometry(QRect(0, 0, 821, 481));
         task_tabWidget->setFont(font2);
         task_tabWidget->setTabsClosable(true);
         task_tabWidget->setMovable(true);
@@ -578,30 +725,6 @@ public:
         verticalLayout_7->setSpacing(6);
         verticalLayout_7->setContentsMargins(11, 11, 11, 11);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        horizontalSpacer_14 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        verticalLayout_7->addItem(horizontalSpacer_14);
-
-        projectInfo = new QLineEdit(tasks);
-        projectInfo->setObjectName(QStringLiteral("projectInfo"));
-        QFont font3;
-        font3.setPointSize(11);
-        font3.setBold(true);
-        font3.setItalic(false);
-        font3.setUnderline(false);
-        font3.setWeight(75);
-        projectInfo->setFont(font3);
-        projectInfo->setStyleSheet(QLatin1String("color: rgb(0, 85, 127);\n"
-"background-color: rgb(240, 240, 240);"));
-        projectInfo->setAlignment(Qt::AlignCenter);
-        projectInfo->setReadOnly(true);
-
-        verticalLayout_7->addWidget(projectInfo);
-
-        horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        verticalLayout_7->addItem(horizontalSpacer_13);
-
         tasksView = new QTableView(tasks);
         tasksView->setObjectName(QStringLiteral("tasksView"));
 
@@ -616,9 +739,9 @@ public:
 
         back_to_project = new QPushButton(tasks);
         back_to_project->setObjectName(QStringLiteral("back_to_project"));
-        QIcon icon14;
-        icon14.addFile(QStringLiteral(":/Images/icons8-left-48.png"), QSize(), QIcon::Normal, QIcon::Off);
-        back_to_project->setIcon(icon14);
+        QIcon icon13;
+        icon13.addFile(QStringLiteral(":/Images/icons8-left-48.png"), QSize(), QIcon::Normal, QIcon::Off);
+        back_to_project->setIcon(icon13);
 
         horizontalLayout_6->addWidget(back_to_project);
 
@@ -647,12 +770,6 @@ public:
         delete_task->setIcon(icon11);
 
         horizontalLayout_6->addWidget(delete_task);
-
-        search_task = new QPushButton(tasks);
-        search_task->setObjectName(QStringLiteral("search_task"));
-        search_task->setIcon(icon12);
-
-        horizontalLayout_6->addWidget(search_task);
 
 
         verticalLayout_7->addLayout(horizontalLayout_6);
@@ -695,11 +812,11 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         taskNum = new QLabel(new_taskTab);
         taskNum->setObjectName(QStringLiteral("taskNum"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(taskNum->sizePolicy().hasHeightForWidth());
-        taskNum->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(taskNum->sizePolicy().hasHeightForWidth());
+        taskNum->setSizePolicy(sizePolicy1);
         taskNum->setMinimumSize(QSize(40, 0));
         taskNum->setMaximumSize(QSize(60, 16777215));
 
@@ -789,14 +906,14 @@ public:
 
         task_save = new QPushButton(new_taskTab);
         task_save->setObjectName(QStringLiteral("task_save"));
-        task_save->setFont(font1);
-        task_save->setIcon(icon13);
+        task_save->setFont(font);
+        task_save->setIcon(icon12);
 
         horizontalLayout_16->addWidget(task_save);
 
         task_cancel = new QPushButton(new_taskTab);
         task_cancel->setObjectName(QStringLiteral("task_cancel"));
-        task_cancel->setFont(font1);
+        task_cancel->setFont(font);
         task_cancel->setIcon(icon11);
 
         horizontalLayout_16->addWidget(task_cancel);
@@ -805,10 +922,326 @@ public:
         verticalLayout_3->addLayout(horizontalLayout_16);
 
         task_tabWidget->addTab(new_taskTab, QString());
+
+        verticalLayout->addWidget(task_tabWidget);
+
+
+        gridLayout_7->addLayout(verticalLayout, 0, 0, 1, 1);
+
         stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
+        gridLayout_3 = new QGridLayout(page_4);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        frame_8 = new QFrame(page_4);
+        frame_8->setObjectName(QStringLiteral("frame_8"));
+        frame_8->setMinimumSize(QSize(60, 60));
+        frame_8->setMaximumSize(QSize(108, 108));
+        frame_8->setStyleSheet(QStringLiteral("image: url(:/Images/TaskBadgerLogo.png);"));
+        frame_8->setFrameShape(QFrame::StyledPanel);
+        frame_8->setFrameShadow(QFrame::Raised);
+
+        horizontalLayout->addWidget(frame_8);
+
+        listInfo = new QLineEdit(page_4);
+        listInfo->setObjectName(QStringLiteral("listInfo"));
+        listInfo->setFont(font3);
+        listInfo->setCursor(QCursor(Qt::ArrowCursor));
+        listInfo->setStyleSheet(QStringLiteral("background-color: rgb(240, 240, 240);"));
+        listInfo->setFrame(false);
+        listInfo->setAlignment(Qt::AlignCenter);
+        listInfo->setReadOnly(true);
+
+        horizontalLayout->addWidget(listInfo);
+
+
+        gridLayout_3->addLayout(horizontalLayout, 0, 0, 1, 1);
+
+        list_tabWidget = new QTabWidget(page_4);
+        list_tabWidget->setObjectName(QStringLiteral("list_tabWidget"));
+        list_tabWidget->setFont(font2);
+        list_tabWidget->setTabsClosable(true);
+        list_tabWidget->setMovable(true);
+        lists = new QWidget();
+        lists->setObjectName(QStringLiteral("lists"));
+        verticalLayout_8 = new QVBoxLayout(lists);
+        verticalLayout_8->setSpacing(6);
+        verticalLayout_8->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        listsView = new QTableView(lists);
+        listsView->setObjectName(QStringLiteral("listsView"));
+
+        verticalLayout_8->addWidget(listsView);
+
+        horizontalLayout_13 = new QHBoxLayout();
+        horizontalLayout_13->setSpacing(6);
+        horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
+        horizontalSpacer_15 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_15);
+
+        back_button = new QPushButton(lists);
+        back_button->setObjectName(QStringLiteral("back_button"));
+        back_button->setIcon(icon13);
+
+        horizontalLayout_13->addWidget(back_button);
+
+        new_list = new QPushButton(lists);
+        new_list->setObjectName(QStringLiteral("new_list"));
+        new_list->setIcon(icon5);
+
+        horizontalLayout_13->addWidget(new_list);
+
+        edit_list = new QPushButton(lists);
+        edit_list->setObjectName(QStringLiteral("edit_list"));
+        edit_list->setEnabled(false);
+        edit_list->setIcon(icon10);
+
+        horizontalLayout_13->addWidget(edit_list);
+
+        delete_list = new QPushButton(lists);
+        delete_list->setObjectName(QStringLiteral("delete_list"));
+        delete_list->setEnabled(false);
+        delete_list->setIcon(icon11);
+
+        horizontalLayout_13->addWidget(delete_list);
+
+
+        verticalLayout_8->addLayout(horizontalLayout_13);
+
+        list_tabWidget->addTab(lists, QString());
+        new_ListTab = new QWidget();
+        new_ListTab->setObjectName(QStringLiteral("new_ListTab"));
+        gridLayout_13 = new QGridLayout(new_ListTab);
+        gridLayout_13->setSpacing(6);
+        gridLayout_13->setContentsMargins(11, 11, 11, 11);
+        gridLayout_13->setObjectName(QStringLiteral("gridLayout_13"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        formLayout_4 = new QFormLayout();
+        formLayout_4->setSpacing(6);
+        formLayout_4->setObjectName(QStringLiteral("formLayout_4"));
+        listName = new QLabel(new_ListTab);
+        listName->setObjectName(QStringLiteral("listName"));
+
+        formLayout_4->setWidget(0, QFormLayout::LabelRole, listName);
+
+        l_name = new QLineEdit(new_ListTab);
+        l_name->setObjectName(QStringLiteral("l_name"));
+
+        formLayout_4->setWidget(0, QFormLayout::FieldRole, l_name);
+
+        listProject = new QLabel(new_ListTab);
+        listProject->setObjectName(QStringLiteral("listProject"));
+
+        formLayout_4->setWidget(1, QFormLayout::LabelRole, listProject);
+
+        l_project = new QComboBox(new_ListTab);
+        l_project->setObjectName(QStringLiteral("l_project"));
+
+        formLayout_4->setWidget(1, QFormLayout::FieldRole, l_project);
+
+        listTask = new QLabel(new_ListTab);
+        listTask->setObjectName(QStringLiteral("listTask"));
+
+        formLayout_4->setWidget(2, QFormLayout::LabelRole, listTask);
+
+        l_task = new QComboBox(new_ListTab);
+        l_task->setObjectName(QStringLiteral("l_task"));
+
+        formLayout_4->setWidget(2, QFormLayout::FieldRole, l_task);
+
+        listItem = new QLabel(new_ListTab);
+        listItem->setObjectName(QStringLiteral("listItem"));
+
+        formLayout_4->setWidget(5, QFormLayout::LabelRole, listItem);
+
+        l_item = new QLineEdit(new_ListTab);
+        l_item->setObjectName(QStringLiteral("l_item"));
+
+        formLayout_4->setWidget(5, QFormLayout::FieldRole, l_item);
+
+        addItem = new QPushButton(new_ListTab);
+        addItem->setObjectName(QStringLiteral("addItem"));
+        addItem->setIcon(icon5);
+
+        formLayout_4->setWidget(6, QFormLayout::FieldRole, addItem);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        formLayout_4->setItem(4, QFormLayout::FieldRole, horizontalSpacer_4);
+
+        horizontalSpacer_16 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        formLayout_4->setItem(3, QFormLayout::FieldRole, horizontalSpacer_16);
+
+
+        horizontalLayout_4->addLayout(formLayout_4);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        horizontalLayout_4->addItem(verticalSpacer_4);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        horizontalLayout_4->addItem(verticalSpacer_3);
+
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        itemsView = new QListView(new_ListTab);
+        itemsView->setObjectName(QStringLiteral("itemsView"));
+        itemsView->setDragEnabled(true);
+        itemsView->setDragDropOverwriteMode(true);
+        itemsView->setDragDropMode(QAbstractItemView::DragDrop);
+        itemsView->setAlternatingRowColors(true);
+        itemsView->setModelColumn(0);
+
+        verticalLayout_4->addWidget(itemsView);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalSpacer_17 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_17);
+
+        list_save = new QPushButton(new_ListTab);
+        list_save->setObjectName(QStringLiteral("list_save"));
+        list_save->setFont(font);
+        list_save->setIcon(icon12);
+
+        horizontalLayout_3->addWidget(list_save);
+
+        list_cancel = new QPushButton(new_ListTab);
+        list_cancel->setObjectName(QStringLiteral("list_cancel"));
+        list_cancel->setFont(font);
+        list_cancel->setIcon(icon11);
+
+        horizontalLayout_3->addWidget(list_cancel);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_3);
+
+
+        horizontalLayout_4->addLayout(verticalLayout_4);
+
+
+        gridLayout_13->addLayout(horizontalLayout_4, 0, 0, 1, 1);
+
+        list_tabWidget->addTab(new_ListTab, QString());
+
+        gridLayout_3->addWidget(list_tabWidget, 1, 0, 1, 1);
+
         stackedWidget->addWidget(page_4);
+        page_5 = new QWidget();
+        page_5->setObjectName(QStringLiteral("page_5"));
+        gridLayout_11 = new QGridLayout(page_5);
+        gridLayout_11->setSpacing(6);
+        gridLayout_11->setContentsMargins(11, 11, 11, 11);
+        gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
+        gridLayout_6 = new QGridLayout();
+        gridLayout_6->setSpacing(6);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        horizontalLayout_19 = new QHBoxLayout();
+        horizontalLayout_19->setSpacing(6);
+        horizontalLayout_19->setObjectName(QStringLiteral("horizontalLayout_19"));
+        frame_9 = new QFrame(page_5);
+        frame_9->setObjectName(QStringLiteral("frame_9"));
+        frame_9->setMinimumSize(QSize(60, 60));
+        frame_9->setMaximumSize(QSize(108, 108));
+        frame_9->setStyleSheet(QStringLiteral("image: url(:/Images/TaskBadgerLogo.png);"));
+        frame_9->setFrameShape(QFrame::StyledPanel);
+        frame_9->setFrameShadow(QFrame::Raised);
+
+        horizontalLayout_19->addWidget(frame_9);
+
+        horizontalSpacer_29 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_19->addItem(horizontalSpacer_29);
+
+        label_9 = new QLabel(page_5);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        QFont font4;
+        font4.setFamily(QStringLiteral("MV Boli"));
+        font4.setPointSize(24);
+        label_9->setFont(font4);
+
+        horizontalLayout_19->addWidget(label_9);
+
+        horizontalSpacer_30 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_19->addItem(horizontalSpacer_30);
+
+
+        gridLayout_6->addLayout(horizontalLayout_19, 0, 0, 1, 1);
+
+        upcomingDue = new QTableView(page_5);
+        upcomingDue->setObjectName(QStringLiteral("upcomingDue"));
+
+        gridLayout_6->addWidget(upcomingDue, 1, 0, 1, 1);
+
+
+        gridLayout_11->addLayout(gridLayout_6, 0, 0, 1, 1);
+
+        stackedWidget->addWidget(page_5);
+        page_6 = new QWidget();
+        page_6->setObjectName(QStringLiteral("page_6"));
+        gridLayout_25 = new QGridLayout(page_6);
+        gridLayout_25->setSpacing(6);
+        gridLayout_25->setContentsMargins(11, 11, 11, 11);
+        gridLayout_25->setObjectName(QStringLiteral("gridLayout_25"));
+        gridLayout_12 = new QGridLayout();
+        gridLayout_12->setSpacing(6);
+        gridLayout_12->setObjectName(QStringLiteral("gridLayout_12"));
+        horizontalLayout_21 = new QHBoxLayout();
+        horizontalLayout_21->setSpacing(6);
+        horizontalLayout_21->setObjectName(QStringLiteral("horizontalLayout_21"));
+        frame_11 = new QFrame(page_6);
+        frame_11->setObjectName(QStringLiteral("frame_11"));
+        frame_11->setMinimumSize(QSize(60, 60));
+        frame_11->setMaximumSize(QSize(108, 108));
+        frame_11->setStyleSheet(QStringLiteral("image: url(:/Images/TaskBadgerLogo.png);"));
+        frame_11->setFrameShape(QFrame::StyledPanel);
+        frame_11->setFrameShadow(QFrame::Raised);
+
+        horizontalLayout_21->addWidget(frame_11);
+
+        horizontalSpacer_33 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_21->addItem(horizontalSpacer_33);
+
+        label_11 = new QLabel(page_6);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setFont(font4);
+
+        horizontalLayout_21->addWidget(label_11);
+
+        horizontalSpacer_34 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_21->addItem(horizontalSpacer_34);
+
+
+        gridLayout_12->addLayout(horizontalLayout_21, 0, 0, 1, 1);
+
+        urgentProj = new QTableView(page_6);
+        urgentProj->setObjectName(QStringLiteral("urgentProj"));
+
+        gridLayout_12->addWidget(urgentProj, 1, 0, 1, 1);
+
+
+        gridLayout_25->addLayout(gridLayout_12, 0, 0, 1, 1);
+
+        stackedWidget->addWidget(page_6);
+
+        verticalLayout_2->addWidget(stackedWidget);
+
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -818,7 +1251,7 @@ public:
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 830, 21));
+        menuBar->setGeometry(QRect(0, 0, 879, 21));
         menuTaskBadger = new QMenu(menuBar);
         menuTaskBadger->setObjectName(QStringLiteral("menuTaskBadger"));
         MainWindow->setMenuBar(menuBar);
@@ -839,7 +1272,50 @@ public:
         taskStatus->setBuddy(status);
         taskDue->setBuddy(due);
         taskDetails->setBuddy(description);
+        listName->setBuddy(name);
+        listProject->setBuddy(t_project);
 #endif // QT_NO_SHORTCUT
+        QWidget::setTabOrder(treeView, tableView);
+        QWidget::setTabOrder(tableView, createProject);
+        QWidget::setTabOrder(createProject, upcomingDeadlines);
+        QWidget::setTabOrder(upcomingDeadlines, urgentProjects);
+        QWidget::setTabOrder(urgentProjects, project_tabWidget);
+        QWidget::setTabOrder(project_tabWidget, projectsView);
+        QWidget::setTabOrder(projectsView, projTasks);
+        QWidget::setTabOrder(projTasks, projLists);
+        QWidget::setTabOrder(projLists, newProj);
+        QWidget::setTabOrder(newProj, editProj);
+        QWidget::setTabOrder(editProj, deleteProj);
+        QWidget::setTabOrder(deleteProj, projectInfo);
+        QWidget::setTabOrder(projectInfo, task_tabWidget);
+        QWidget::setTabOrder(task_tabWidget, tasksView);
+        QWidget::setTabOrder(tasksView, back_to_project);
+        QWidget::setTabOrder(back_to_project, task_list);
+        QWidget::setTabOrder(task_list, new_task);
+        QWidget::setTabOrder(new_task, edit_task);
+        QWidget::setTabOrder(edit_task, delete_task);
+        QWidget::setTabOrder(delete_task, t_name);
+        QWidget::setTabOrder(t_name, t_project);
+        QWidget::setTabOrder(t_project, t_num);
+        QWidget::setTabOrder(t_num, t_priority);
+        QWidget::setTabOrder(t_priority, t_status);
+        QWidget::setTabOrder(t_status, t_due);
+        QWidget::setTabOrder(t_due, t_description);
+        QWidget::setTabOrder(t_description, task_save);
+        QWidget::setTabOrder(task_save, task_cancel);
+        QWidget::setTabOrder(task_cancel, upcomingDue);
+        QWidget::setTabOrder(upcomingDue, urgentProj);
+        QWidget::setTabOrder(urgentProj, ProjSave);
+        QWidget::setTabOrder(ProjSave, ProjCancel);
+        QWidget::setTabOrder(ProjCancel, status);
+        QWidget::setTabOrder(status, created);
+        QWidget::setTabOrder(created, num);
+        QWidget::setTabOrder(num, category);
+        QWidget::setTabOrder(category, priority);
+        QWidget::setTabOrder(priority, cost);
+        QWidget::setTabOrder(cost, name);
+        QWidget::setTabOrder(name, due);
+        QWidget::setTabOrder(due, description);
 
         mainToolBar->addAction(actionBack);
         mainToolBar->addAction(actionNext);
@@ -852,9 +1328,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
-        project_tabWidget->setCurrentIndex(1);
-        task_tabWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
+        project_tabWidget->setCurrentIndex(0);
+        task_tabWidget->setCurrentIndex(0);
+        list_tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -870,16 +1347,16 @@ public:
         actionNext->setText(QApplication::translate("MainWindow", "Next", nullptr));
         actionRefresh->setText(QApplication::translate("MainWindow", "Refresh", nullptr));
         actionHome->setText(QApplication::translate("MainWindow", "Home", nullptr));
-        label->setText(QApplication::translate("MainWindow", "My Dashboard", nullptr));
+        label_10->setText(QApplication::translate("MainWindow", "My Dashboard", nullptr));
         createProject->setText(QApplication::translate("MainWindow", "Create New Project", nullptr));
         upcomingDeadlines->setText(QApplication::translate("MainWindow", "Upcoming Deadlines", nullptr));
         urgentProjects->setText(QApplication::translate("MainWindow", "Urgent Projects", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "Projects", nullptr));
         projTasks->setText(QApplication::translate("MainWindow", "Tasks", nullptr));
         projLists->setText(QApplication::translate("MainWindow", "Lists", nullptr));
         newProj->setText(QApplication::translate("MainWindow", "New", nullptr));
         editProj->setText(QApplication::translate("MainWindow", "Edit", nullptr));
         deleteProj->setText(QApplication::translate("MainWindow", "Delete", nullptr));
-        searchProj->setText(QApplication::translate("MainWindow", "Search", nullptr));
         project_tabWidget->setTabText(project_tabWidget->indexOf(projects), QApplication::translate("MainWindow", "Projects", nullptr));
         ProjName->setText(QApplication::translate("MainWindow", "Project Name:", nullptr));
         ProjNum->setText(QApplication::translate("MainWindow", "Project #:", nullptr));
@@ -901,12 +1378,12 @@ public:
         ProjSave->setText(QApplication::translate("MainWindow", "Save", nullptr));
         ProjCancel->setText(QApplication::translate("MainWindow", "Cancel", nullptr));
         project_tabWidget->setTabText(project_tabWidget->indexOf(newProject), QApplication::translate("MainWindow", "New Project", nullptr));
+        projectInfo->setPlaceholderText(QApplication::translate("MainWindow", "Tasks", nullptr));
         back_to_project->setText(QApplication::translate("MainWindow", "Back To Project", nullptr));
         task_list->setText(QApplication::translate("MainWindow", "Lists", nullptr));
         new_task->setText(QApplication::translate("MainWindow", "New", nullptr));
         edit_task->setText(QApplication::translate("MainWindow", "Edit", nullptr));
         delete_task->setText(QApplication::translate("MainWindow", "Delete", nullptr));
-        search_task->setText(QApplication::translate("MainWindow", "Search", nullptr));
         task_tabWidget->setTabText(task_tabWidget->indexOf(tasks), QApplication::translate("MainWindow", "Tasks", nullptr));
         taskName->setText(QApplication::translate("MainWindow", "Task Name:", nullptr));
         taskProject->setText(QApplication::translate("MainWindow", "Parent Project:", nullptr));
@@ -925,6 +1402,22 @@ public:
         task_save->setText(QApplication::translate("MainWindow", "Save", nullptr));
         task_cancel->setText(QApplication::translate("MainWindow", "Cancel", nullptr));
         task_tabWidget->setTabText(task_tabWidget->indexOf(new_taskTab), QApplication::translate("MainWindow", "New Task", nullptr));
+        listInfo->setPlaceholderText(QApplication::translate("MainWindow", "Lists", nullptr));
+        back_button->setText(QApplication::translate("MainWindow", "Back", nullptr));
+        new_list->setText(QApplication::translate("MainWindow", "New", nullptr));
+        edit_list->setText(QApplication::translate("MainWindow", "Edit", nullptr));
+        delete_list->setText(QApplication::translate("MainWindow", "Delete", nullptr));
+        list_tabWidget->setTabText(list_tabWidget->indexOf(lists), QApplication::translate("MainWindow", "Lists", nullptr));
+        listName->setText(QApplication::translate("MainWindow", "List Name:", nullptr));
+        listProject->setText(QApplication::translate("MainWindow", "Parent Project:", nullptr));
+        listTask->setText(QApplication::translate("MainWindow", "Parent Task:", nullptr));
+        listItem->setText(QApplication::translate("MainWindow", "List Item:", nullptr));
+        addItem->setText(QApplication::translate("MainWindow", "Add To List", nullptr));
+        list_save->setText(QApplication::translate("MainWindow", "Save", nullptr));
+        list_cancel->setText(QApplication::translate("MainWindow", "Cancel", nullptr));
+        list_tabWidget->setTabText(list_tabWidget->indexOf(new_ListTab), QApplication::translate("MainWindow", "New List", nullptr));
+        label_9->setText(QApplication::translate("MainWindow", "Upcoming Deadlines", nullptr));
+        label_11->setText(QApplication::translate("MainWindow", "Urgent Projects", nullptr));
         menuTaskBadger->setTitle(QApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi
 

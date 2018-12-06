@@ -32,3 +32,10 @@ QSqlQueryModel* ObjectModel::getTreeModel(QString view)
     model->setQuery(query);
     return model;
 }
+QSqlQueryModel* ObjectModel::getListModel(QString routine, QString id)
+{
+    QSqlQuery query = objectDAO->getRoutine(routine, id);
+    this->model = new QSqlQueryModel();
+    model->setQuery(query);
+    return model;
+}

@@ -17,6 +17,7 @@
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QListView>
 #include <QSqlQueryModel>
 #include "QMainWindow"
 
@@ -32,15 +33,18 @@ public:
     virtual void retranslateUi() = 0;
     QLineEdit *objName;
     QLineEdit *objID;
+    QLineEdit *objItem;
     QComboBox *objPriority;
     QDateEdit *objDue;
     QComboBox *objStatus;
     QComboBox *objCategory;
     QComboBox *objProject;
+    QComboBox *objTask;
     QDoubleSpinBox *objCost;
     QDateEdit *objCreated;
     QTextEdit *objDescription;
 
+    QPushButton *objNew;
     QPushButton *objSave;
     QPushButton *objCancel;
 
@@ -50,6 +54,7 @@ protected slots:
 
 protected:
     QVBoxLayout *vLayout;
+    QVBoxLayout *itemsLayout;
 
     QFormLayout *formLayout;
     QGridLayout *gridLayout;
@@ -62,6 +67,10 @@ protected:
     QSpacerItem *horizontalSpacer;
     QSpacerItem *gridSpacer;
     QSpacerItem *buttonSpacer;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_2;
+
+    QListView *itemsView;
 
     QLabel *oName;
     QLabel *oID;
@@ -73,10 +82,13 @@ protected:
     QLabel *oCreated;
     QLabel *oDescription;
     QLabel *oProject;
+    QLabel *oTask;
+    QLabel *oItem;
 
     QFont font;
     QIcon saveIcon;
     QIcon cancelIcon;
+    QIcon newIcon;
 
     QSqlQueryModel *model;
 

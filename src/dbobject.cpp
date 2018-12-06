@@ -52,6 +52,12 @@ QString DBObject::getProject() const
 {
     return oProject;
 }
+QString DBObject::getCatID(const QString& catVal) const
+{
+    int id = objectDAO->getFkID("category", catVal);
+    return QString::number(id);
+
+}
 /******************************************
                 SET FUNCTIONS
 *******************************************/
@@ -93,4 +99,14 @@ void DBObject::setProjectID(const QString& projectVal)
 {
     oProject = projectVal;
     oProjectID = objectDAO->getFkID("project", projectVal);
+}
+void DBObject::setTaskID(const QString& taskVal)
+{
+    oTask = taskVal;
+    oTaskID = objectDAO->getFkID("task", taskVal);
+}
+void DBObject::setListID(const QString& listVal)
+{
+    oList = listVal;
+    oListID = objectDAO->getFkID("list", listVal);
 }

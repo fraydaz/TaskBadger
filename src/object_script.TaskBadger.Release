@@ -15,6 +15,12 @@ INPUT(
 ./release\taskmodel.o
 ./release\formlayout.o
 ./release\projectformlayout.o
+./release\list.o
+./release\listdao.o
+./release\listmodel.o
+./release\listformlayout.o
+./release\listitem.o
+./release\itemdao.o
 ./release\qrc_myres.o
 ./release\moc_mainwindow.o
 ./release\moc_formlayout.o
