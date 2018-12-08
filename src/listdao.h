@@ -11,7 +11,8 @@ public:
     ListDAO();
     bool saveList_Proj(QString n, int id);
     bool saveList_Task(QString n, int id);
-    bool updateList(QString id, QString n, int proj, int task);
+    bool updateList(QString id, QString n);
+    bool listExists(QString listName);
 
 private:
     class DBManager *Database;

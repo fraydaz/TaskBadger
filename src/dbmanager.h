@@ -21,6 +21,7 @@ public:
     QSqlQuery sqlExec(QString sql);
     QSqlQuery sqlSelect(QSqlQuery sql);
     void sqlDelete(QString sql);
+    QString sqlCount(QSqlQuery query);
     void initializeDB();
 private:
     QString host;

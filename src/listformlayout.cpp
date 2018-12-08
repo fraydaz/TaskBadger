@@ -5,6 +5,7 @@ ListFormLayout::ListFormLayout()
     mainWindow = new MainWindow();
     listModel = new ListModel();
     list = new List();
+    item = new ListItem();
     setupUi();
 }
 QVBoxLayout* ListFormLayout::setupUi()
@@ -22,49 +23,62 @@ QVBoxLayout* ListFormLayout::setupUi()
     formLayout->setSpacing(6);
     formLayout->setObjectName(QStringLiteral("formLayout"));
 
+    oID = new QLabel();
+    oID->setObjectName(QStringLiteral("oID"));
+    oID->setFont(font);
+    formLayout->setWidget(0, QFormLayout::LabelRole, oID);
+
+    objID = new QLineEdit();
+    objID->setObjectName(QStringLiteral("objID"));
+    objID->setFont(font);
+    objID->setStyleSheet(QStringLiteral("background-color: rgb(223, 223, 223);"));
+    objID->setReadOnly(true);
+    objID->setClearButtonEnabled(false);
+    formLayout->setWidget(0, QFormLayout::FieldRole, objID);
+
     oName = new QLabel();
     oName->setObjectName(QStringLiteral("oName"));
     oName->setFont(font);
-    formLayout->setWidget(0, QFormLayout::LabelRole, oName);
+    formLayout->setWidget(1, QFormLayout::LabelRole, oName);
 
     objName = new QLineEdit();
     objName->setObjectName(QStringLiteral("objName"));
-    formLayout->setWidget(0, QFormLayout::FieldRole, objName);
+    formLayout->setWidget(1, QFormLayout::FieldRole, objName);
 
     oProject = new QLabel();
     oProject->setObjectName(QStringLiteral("oProject"));
-    formLayout->setWidget(1, QFormLayout::LabelRole, oProject);
+    formLayout->setWidget(2, QFormLayout::LabelRole, oProject);
 
     objProject = new QComboBox();
     objProject->setObjectName(QStringLiteral("objProject"));
-    formLayout->setWidget(1, QFormLayout::FieldRole, objProject);
+    formLayout->setWidget(2, QFormLayout::FieldRole, objProject);
 
     oTask = new QLabel();
     oTask->setObjectName(QStringLiteral("oTask"));
-    formLayout->setWidget(2, QFormLayout::LabelRole, oTask);
+    formLayout->setWidget(3, QFormLayout::LabelRole, oTask);
 
     objTask = new QComboBox();
     objTask->setObjectName(QStringLiteral("objTask"));
-    formLayout->setWidget(2, QFormLayout::FieldRole, objTask);
+    formLayout->setWidget(3, QFormLayout::FieldRole, objTask);
 
     horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    formLayout->setItem(3, QFormLayout::FieldRole, horizontalSpacer);
+    formLayout->setItem(4, QFormLayout::FieldRole, horizontalSpacer);
 
     gridSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    formLayout->setItem(4, QFormLayout::FieldRole, gridSpacer);
+    formLayout->setItem(5, QFormLayout::FieldRole, gridSpacer);
 
     oDescription = new QLabel();
     oDescription->setObjectName(QStringLiteral("oDescription"));
-    formLayout->setWidget(5, QFormLayout::LabelRole, oDescription);
+    formLayout->setWidget(6, QFormLayout::LabelRole, oDescription);
 
     objItem = new QLineEdit();
     objItem->setObjectName(QStringLiteral("objItem"));
-    formLayout->setWidget(5, QFormLayout::FieldRole, objItem);
+    formLayout->setWidget(6, QFormLayout::FieldRole, objItem);
 
-    objNew = new QPushButton();
-    objNew->setObjectName(QStringLiteral("objNew"));
-    objNew->setIcon(newIcon);
-    formLayout->setWidget(6, QFormLayout::FieldRole, objNew);
+    saveItem = new QPushButton();
+    saveItem->setObjectName(QStringLiteral("saveItem"));
+    saveItem->setIcon(newIcon);
+    formLayout->setWidget(7, QFormLayout::FieldRole, saveItem);
     gridLayout->addLayout(formLayout, 0, 0, 1, 1);
 
     itemsLayout = new QVBoxLayout();
@@ -72,6 +86,7 @@ QVBoxLayout* ListFormLayout::setupUi()
     itemsLayout->setObjectName(QStringLiteral("itemsLayout"));
     itemsView = new QListView();
     itemsView->setObjectName(QStringLiteral("itemsView"));
+    itemsView->setFont(font);
     itemsView->setDragEnabled(true);
     itemsView->setDragDropOverwriteMode(true);
     itemsView->setDragDropMode(QAbstractItemView::DragDrop);
@@ -103,9 +118,10 @@ QVBoxLayout* ListFormLayout::setupUi()
     verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
     gridLayout->addItem(verticalSpacer, 0, 1, 1, 1);
     verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-    vLayout->addItem(verticalSpacer_2);
+    gridLayout->addItem(verticalSpacer_2, 0, 2, 1, 1);
     vLayout->addItem(gridLayout);
 
+    oID->setBuddy(objID);
     oName->setBuddy(objName);
     oProject->setBuddy(objProject);
     oTask->setBuddy(objTask);
@@ -116,6 +132,7 @@ QVBoxLayout* ListFormLayout::setupUi()
 }
 void ListFormLayout::retranslateUi()
 {
+    oID->setText("List ID:");
     oName->setText("List Name:");
     oProject->setText("Parent Project:");
     oTask->setText("Parent Task:");
@@ -123,7 +140,7 @@ void ListFormLayout::retranslateUi()
 
     objSave->setText("Save");
     objCancel->setText("Cancel");
-    objNew->setText("Add To List");
+    saveItem->setText("Add To List");
 
     model = listModel->getComboBox("project", "id");
     objProject->setModel(model);
@@ -135,19 +152,24 @@ void ListFormLayout::retranslateUi()
 
     QObject::connect(objSave, SIGNAL(clicked()), this, SLOT(saveObject()));
     QObject::connect(objCancel, SIGNAL(clicked()), this, SLOT(cancelObject()));
-    //QObject::connect(objNew, SIGNAL(clicked()), this, SLOT(addObject()));
+    QObject::connect(saveItem, SIGNAL(clicked()), this, SLOT(addItem()));
 }
 void ListFormLayout::saveObject()
 {
     list->setName(objName->text());
-    //list->setProjectID(objProjID->currentText());
     list->update_list(objID->text());
 }
 void ListFormLayout::cancelObject()
 {
     mainWindow->openWidgetPg(0);
 }
-/*void ListFormLayout::addObject()
+void ListFormLayout::addItem()
 {
-
-}*/
+    qDebug() << "In saveItem function...";
+    item->setName(objItem->text());
+    item->setListID(objName->text());
+    item->create_item();
+    objItem->clear();
+    model = listModel->getTableModel("list_items", objName->text());
+    itemsView->setModel(model);
+}

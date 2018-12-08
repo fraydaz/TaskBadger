@@ -16,7 +16,6 @@ public:
     virtual QSqlQueryModel* getTableModel(QString view);
     virtual QSqlQueryModel* getTableModel(QString view, QString id);
     virtual QSqlQueryModel* getTreeModel(QString view);
-    virtual QSqlQueryModel* getListModel(QString routine, QString id);
     virtual QVBoxLayout* setLayout(QString id) = 0;
 
 protected:

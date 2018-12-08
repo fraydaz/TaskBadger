@@ -10,9 +10,11 @@ class ListModel  : public ObjectModel
 public:
     ListModel();
     QVBoxLayout* setLayout(QString id);
+    void setListType(QString l_type);
 
 private:
     class ListDAO* listDAO;
+    QString listType = "";
 };
 
 #endif // LISTMODEL_H

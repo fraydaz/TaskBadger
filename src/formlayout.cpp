@@ -7,3 +7,7 @@ FormLayout::FormLayout()
     cancelIcon.addFile(QStringLiteral(":/Images/icons8-close-window-48.png"), QSize(), QIcon::Normal, QIcon::Off);
     newIcon.addFile(QStringLiteral(":/Images/icons8-plus-48.png"), QSize(), QIcon::Normal, QIcon::Off);
 }
+void FormLayout::addItem()
+{
+    qDebug() << "In form layout add item function";
+}

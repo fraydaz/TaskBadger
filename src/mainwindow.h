@@ -122,8 +122,6 @@ private slots:
 
     void on_treeView_clicked(const QModelIndex &index);
 
-    void on_addItem_clicked();
-
     void on_list_save_clicked();
 
     void on_list_cancel_clicked();
@@ -141,6 +139,8 @@ private slots:
     void on_edit_list_clicked();
 
     void on_list_tabWidget_tabCloseRequested(int index);
+
+    void on_saveItem_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -170,7 +170,7 @@ private:
     QString taskName = "";
     QString listID = "0";
     QString listName = "";
-
+    QString listType = "";
 
     QWidget *newTab;
     QTableView *newTable;

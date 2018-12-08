@@ -21,6 +21,7 @@ public:
     virtual QString getCategory() const;
     virtual QString getProject() const;
     virtual QString getCatID(const QString& catVal) const;
+    virtual QString getListID(const QString& listVal) const;
 
     // Virtual functions to set values
     // for database objects

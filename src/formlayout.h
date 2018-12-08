@@ -44,13 +44,13 @@ public:
     QDateEdit *objCreated;
     QTextEdit *objDescription;
 
-    QPushButton *objNew;
     QPushButton *objSave;
     QPushButton *objCancel;
 
 protected slots:
     virtual void saveObject() = 0;
     virtual void cancelObject() = 0;
+    virtual void addItem();
 
 protected:
     QVBoxLayout *vLayout;
@@ -69,8 +69,6 @@ protected:
     QSpacerItem *buttonSpacer;
     QSpacerItem *verticalSpacer;
     QSpacerItem *verticalSpacer_2;
-
-    QListView *itemsView;
 
     QLabel *oName;
     QLabel *oID;

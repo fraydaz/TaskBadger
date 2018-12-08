@@ -189,7 +189,7 @@ public:
     QComboBox *l_task;
     QLabel *listItem;
     QLineEdit *l_item;
-    QPushButton *addItem;
+    QPushButton *saveItem;
     QSpacerItem *horizontalSpacer_4;
     QSpacerItem *horizontalSpacer_16;
     QSpacerItem *verticalSpacer_4;
@@ -447,6 +447,7 @@ public:
 
         projTasks = new QPushButton(projects);
         projTasks->setObjectName(QStringLiteral("projTasks"));
+        projTasks->setEnabled(false);
         QIcon icon8;
         icon8.addFile(QStringLiteral(":/Images/icons8-task-planning-24.png"), QSize(), QIcon::Normal, QIcon::Off);
         projTasks->setIcon(icon8);
@@ -455,6 +456,7 @@ public:
 
         projLists = new QPushButton(projects);
         projLists->setObjectName(QStringLiteral("projLists"));
+        projLists->setEnabled(false);
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/Images/icons8-to-do-48.png"), QSize(), QIcon::Normal, QIcon::Off);
         projLists->setIcon(icon9);
@@ -747,6 +749,7 @@ public:
 
         task_list = new QPushButton(tasks);
         task_list->setObjectName(QStringLiteral("task_list"));
+        task_list->setEnabled(false);
         task_list->setIcon(icon9);
 
         horizontalLayout_6->addWidget(task_list);
@@ -1067,11 +1070,11 @@ public:
 
         formLayout_4->setWidget(5, QFormLayout::FieldRole, l_item);
 
-        addItem = new QPushButton(new_ListTab);
-        addItem->setObjectName(QStringLiteral("addItem"));
-        addItem->setIcon(icon5);
+        saveItem = new QPushButton(new_ListTab);
+        saveItem->setObjectName(QStringLiteral("saveItem"));
+        saveItem->setIcon(icon5);
 
-        formLayout_4->setWidget(6, QFormLayout::FieldRole, addItem);
+        formLayout_4->setWidget(6, QFormLayout::FieldRole, saveItem);
 
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -1097,6 +1100,8 @@ public:
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         itemsView = new QListView(new_ListTab);
         itemsView->setObjectName(QStringLiteral("itemsView"));
+        itemsView->setFont(font);
+        itemsView->setLineWidth(2);
         itemsView->setDragEnabled(true);
         itemsView->setDragDropOverwriteMode(true);
         itemsView->setDragDropMode(QAbstractItemView::DragDrop);
@@ -1329,8 +1334,8 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(3);
-        project_tabWidget->setCurrentIndex(0);
-        task_tabWidget->setCurrentIndex(0);
+        project_tabWidget->setCurrentIndex(1);
+        task_tabWidget->setCurrentIndex(1);
         list_tabWidget->setCurrentIndex(1);
 
 
@@ -1359,6 +1364,7 @@ public:
         deleteProj->setText(QApplication::translate("MainWindow", "Delete", nullptr));
         project_tabWidget->setTabText(project_tabWidget->indexOf(projects), QApplication::translate("MainWindow", "Projects", nullptr));
         ProjName->setText(QApplication::translate("MainWindow", "Project Name:", nullptr));
+        name->setText(QApplication::translate("MainWindow", "New Project", nullptr));
         ProjNum->setText(QApplication::translate("MainWindow", "Project #:", nullptr));
         priority->setItemText(0, QApplication::translate("MainWindow", "Normal", nullptr));
         priority->setItemText(1, QApplication::translate("MainWindow", "High", nullptr));
@@ -1386,6 +1392,7 @@ public:
         delete_task->setText(QApplication::translate("MainWindow", "Delete", nullptr));
         task_tabWidget->setTabText(task_tabWidget->indexOf(tasks), QApplication::translate("MainWindow", "Tasks", nullptr));
         taskName->setText(QApplication::translate("MainWindow", "Task Name:", nullptr));
+        t_name->setText(QApplication::translate("MainWindow", "New Task", nullptr));
         taskProject->setText(QApplication::translate("MainWindow", "Parent Project:", nullptr));
         taskNum->setText(QApplication::translate("MainWindow", "Task #:", nullptr));
         taskPriority->setText(QApplication::translate("MainWindow", "Priority:", nullptr));
@@ -1412,7 +1419,7 @@ public:
         listProject->setText(QApplication::translate("MainWindow", "Parent Project:", nullptr));
         listTask->setText(QApplication::translate("MainWindow", "Parent Task:", nullptr));
         listItem->setText(QApplication::translate("MainWindow", "List Item:", nullptr));
-        addItem->setText(QApplication::translate("MainWindow", "Add To List", nullptr));
+        saveItem->setText(QApplication::translate("MainWindow", "Add To List", nullptr));
         list_save->setText(QApplication::translate("MainWindow", "Save", nullptr));
         list_cancel->setText(QApplication::translate("MainWindow", "Cancel", nullptr));
         list_tabWidget->setTabText(list_tabWidget->indexOf(new_ListTab), QApplication::translate("MainWindow", "New List", nullptr));

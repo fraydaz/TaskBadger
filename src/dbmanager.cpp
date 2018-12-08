@@ -93,3 +93,16 @@ bool DBManager::sqlInsert(QSqlQuery query)
      else
          qDebug() << "Record Deleted: " << query.lastQuery();
  }
+/*QString DBManager::sqlCount(QSqlQuery query)
+{
+    QString total = "0";
+    if(!query.exec())
+        exception->showError(query.lastError().text());
+    else
+    {
+        total = query.value(0).toString();
+        qDebug() << "Total is: " << total;
+    }
+    qDebug() << "Query Successful: " << query.lastQuery();
+    return total;
+}*/

@@ -59,7 +59,7 @@ void MainWindow::setTreeView()
 }
 void MainWindow::setListView()
 {
-    model = listModel->getListModel("list_items", listID);
+    model = listModel->getTableModel("list_items", listID);
     ui->itemsView->setModel(model);
 }
 void MainWindow::setTableView(QTableView *table, QString view)
@@ -113,23 +113,23 @@ void MainWindow::saveTask()
 void MainWindow::saveList()
 {
     list->setName(ui->l_name->text());
-    if (ui->l_task->currentText() != "")
-    {
-        list->setTaskID(ui->l_task->currentText());
-        list->create_list("task");
-    }
-    else
+    if (listType == "project")
     {
         list->setProjectID(ui->l_project->currentText());
         list->create_list("project");
     }
-    clearListForm();
+    else
+    {
+        list->setTaskID(ui->l_task->currentText());
+        list->create_list("task");
+    }
 }
 void MainWindow::saveItem()
 {
     item->setName(ui->l_item->text());
     item->setListID(ui->l_name->text());
     item->create_item();
+    ui->l_item->clear();
 }
 /**************************************
               EDIT OBJECTS
@@ -162,6 +162,7 @@ void MainWindow::editList(QString id)
 {
     // create layout for view & edit list
     QVBoxLayout *listLayout = new QVBoxLayout;
+    listModel->setListType(listType);
     listLayout = listModel->setLayout(id);
     newTab = new QWidget(ui->list_tabWidget);
 
@@ -170,6 +171,22 @@ void MainWindow::editList(QString id)
     ui->list_tabWidget->addTab(newTab, "List #" + id);
     ui->list_tabWidget->setCurrentWidget(newTab);
 }
+/*void MainWindow::editList(QString id)
+{
+    openTab(ui->list_tabWidget, createNewTab);
+    ui->l_name->setText(listName);
+    if (listType == "project")
+    {
+        ui->l_project->setCurrentText(list->getProjectName(id));
+        ui->l_task->setCurrentIndex(-1);
+    }
+    else if (listType == "task")
+    {
+        ui->l_task->setCurrentText(list->getTaskName(id));
+        ui->l_project->setCurrentIndex(-1);
+    }
+    setListView();
+}*/
 /**************************************
              RESET FORMS
 ***************************************/
@@ -207,7 +224,7 @@ void MainWindow::clearListForm()
 }
 void MainWindow::refreshPg()
 {
-   /* switch (ui->stackedWidget->currentIndex()) {
+    switch (ui->stackedWidget->currentIndex()) {
     case 0:
     {
         setTreeView();
@@ -228,10 +245,15 @@ void MainWindow::refreshPg()
         break;
     case 3:
     {
-        if (ui->l_task->currentText() == "")
-                setTableView(ui->listsView, "project_lists", projectID);
-        else if (ui->l_project->currentText() == "")
-                setTableView(ui->listsView, "task_lists", taskID);
+        if (ui->list_tabWidget->currentIndex() == 0)
+        {
+            if (ui->l_task->currentText() == "")
+                    setTableView(ui->listsView, "project_lists", projectID);
+            else if (ui->l_project->currentText() == "")
+                    setTableView(ui->listsView, "task_lists", taskID);
+        }
+        else if (ui->list_tabWidget->currentIndex() == 1)
+            clearListForm();
     }
         break;
     case 4:
@@ -243,7 +265,7 @@ void MainWindow::refreshPg()
     default:
         setTreeView();
         break;
-    }*/
+    }
 }
 /**************************************
               ACTION SLOTS
@@ -305,6 +327,8 @@ void MainWindow::on_projectsView_clicked(const QModelIndex &index)
 {
     ui->editProj->setEnabled(true);
     ui->deleteProj->setEnabled(true);
+    ui->projTasks->setEnabled(true);
+    ui->projLists->setEnabled(true);
     QModelIndex idIndex = model->index(index.row(), 0, QModelIndex());
     QModelIndex nameIndex = model->index(index.row(), 1, QModelIndex());
     projectID = idIndex.data().toString();
@@ -356,6 +380,7 @@ void MainWindow::on_projTasks_clicked()
 
 void MainWindow::on_projLists_clicked()
 {
+    listType = "project";
     ui->l_task->setCurrentIndex(-1);
     ui->l_task->setDisabled(true);
     ui->l_project->setDisabled(false);
@@ -366,6 +391,7 @@ void MainWindow::on_projLists_clicked()
     setTableView(ui->listsView, "project_lists", projectID);
     setComboBox(ui->l_project, "project", "id");
     ui->l_project->setCurrentText(list->getProjectName(projectID));
+    refreshPg();
 }
 
 /**************************************
@@ -400,6 +426,7 @@ void MainWindow::on_back_to_project_clicked()
 
 void MainWindow::on_task_list_clicked()
 {
+    listType = "task";
     ui->l_project->setCurrentIndex(-1);
     ui->l_project->setDisabled(true);
     ui->l_task->setDisabled(false);
@@ -410,6 +437,7 @@ void MainWindow::on_task_list_clicked()
     setTableView(ui->listsView, "task_lists", taskID);
     setComboBox(ui->l_task, "task", "id");
     ui->l_task->setCurrentText(list->getTaskName(taskID));
+    refreshPg();
 }
 
 void MainWindow::on_new_task_clicked()
@@ -446,6 +474,7 @@ void MainWindow::on_tasksView_clicked(const QModelIndex &index)
 {
     ui->edit_task->setEnabled(true);
     ui->delete_task->setEnabled(true);
+    ui->task_list->setEnabled(true);
     QModelIndex idIndex = model->index(index.row(), 0, QModelIndex());
     QModelIndex nameIndex = model->index(index.row(), 1, QModelIndex());
     taskID = idIndex.data().toString();
@@ -470,12 +499,6 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
 /**************************************
               LIST SLOTS
 ***************************************/
-void MainWindow::on_addItem_clicked()
-{
-    saveItem();
-    setListView();
-}
-
 void MainWindow::on_list_save_clicked()
 {
     saveList();
@@ -506,6 +529,7 @@ void MainWindow::on_back_button_clicked()
 void MainWindow::on_new_list_clicked()
 {
     openTab(ui->list_tabWidget, createNewTab);
+    refreshPg();
 }
 
 void MainWindow::on_delete_list_clicked()
@@ -533,6 +557,11 @@ void MainWindow::on_listsView_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_edit_list_clicked()
 {
-    editList("3");
+    editList(listID);
 }
 
+void MainWindow::on_saveItem_clicked()
+{
+    saveItem();
+    setListView();
+}

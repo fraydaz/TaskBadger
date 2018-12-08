@@ -58,6 +58,12 @@ QString DBObject::getCatID(const QString& catVal) const
     return QString::number(id);
 
 }
+QString DBObject::getListID(const QString& listVal) const
+{
+    int id = objectDAO->getFkID("list", listVal);
+    return QString::number(id);
+
+}
 /******************************************
                 SET FUNCTIONS
 *******************************************/
