@@ -9,11 +9,17 @@
 
 QT_BEGIN_NAMESPACE
 
+/*
+ * This class inherits from FormLayout class
+ * and sets up a the layout for a new tab
+ * for viewing and editing an existing list
+*/
 class ListFormLayout  : public FormLayout
 {
 
 public:
     ListFormLayout();
+
     QVBoxLayout* setupUi();
     void retranslateUi();
 

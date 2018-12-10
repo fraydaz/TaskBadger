@@ -9,7 +9,11 @@ QVBoxLayout* TaskModel::setLayout(QString id)
     QVBoxLayout *taskLayout = new QVBoxLayout;
     class TaskFormLayout *newLayout;
     newLayout = new TaskFormLayout();
+
+    // get layout for new tab
     taskLayout = newLayout->setupUi();
+
+    // put task info in the form fields
     newLayout->objID->setText(id);
     newLayout->objID->setStyleSheet("");
     newLayout->objName->setText(taskDAO->getObjectInfo(id, "name", "task"));

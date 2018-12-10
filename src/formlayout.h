@@ -23,14 +23,26 @@
 
 QT_BEGIN_NAMESPACE
 
+/*
+ * This is an abstract class for all
+ * classes that set up the UI dynamically
+*/
 class FormLayout :  public QMainWindow
 {
     Q_OBJECT
 
 public:
     FormLayout();
+
+    // pure virtual function to setup the layout
     virtual QVBoxLayout* setupUi() = 0;
+
+    // pure virutal function to
+    // make the layout functional
     virtual void retranslateUi() = 0;
+
+    // fields that have values
+    // needed by other classes
     QLineEdit *objName;
     QLineEdit *objID;
     QLineEdit *objItem;
@@ -44,10 +56,13 @@ public:
     QDateEdit *objCreated;
     QTextEdit *objDescription;
 
+    // object save and cancel buttons
     QPushButton *objSave;
     QPushButton *objCancel;
 
 protected slots:
+    // pure virtual functions that
+    // get called when buttons are clicked
     virtual void saveObject() = 0;
     virtual void cancelObject() = 0;
     virtual void addItem();

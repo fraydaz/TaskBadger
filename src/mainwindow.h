@@ -24,6 +24,10 @@ namespace Ui {
 class MainWindow;
 }
 
+/*
+ * This class manages the user interface
+ * for all pages in the project
+*/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -33,10 +37,16 @@ public:
 
     ~MainWindow();
     void setUILayout();
+
+    // opens specified tab
     void openTab(QTabWidget* widget, int index);
+
+    // opens a different page
     void openWidgetPg(int index);
 
+    // populate comboboxes with info from database
     void setComboBox(QComboBox* menu, QString table, QString column);
+
     void setDefaultDate();
     void refreshPg();
 
@@ -45,9 +55,16 @@ public:
     void saveList();
     void saveItem();
 
+    // on home page
     void setTreeView();
+
+    // list items view
     void setListView();
+
+    // all tables that show db views
     void setTableView(QTableView *table, QString view);
+
+    // all tables that show db stored procedures
     void setTableView(QTableView *table, QString view, QString id);
 
     void clearProjForm();
@@ -70,14 +87,21 @@ private slots:
 
 
     /*  DASHBOARD BUTTON SLOTS   */
+
     void on_createProject_clicked();
 
     void on_upcomingDeadlines_clicked();
 
     void on_urgentProjects_clicked();
 
+    void on_treeView_clicked(const QModelIndex &index);
+
 
     /*  PROJECT BUTTON SLOTS   */
+
+    void on_projTasks_clicked();
+
+    void on_projLists_clicked();
 
     void on_editProj_clicked();
 
@@ -93,14 +117,10 @@ private slots:
 
     void on_projectsView_doubleClicked(const QModelIndex &index);
 
-
     void on_project_tabWidget_tabCloseRequested(int index);
 
-    void on_task_tabWidget_tabCloseRequested(int index);
 
-    void on_projTasks_clicked();
-
-    void on_projLists_clicked();
+    /*      TASK BUTTON SLOTS       */
 
     void on_back_to_project_clicked();
 
@@ -120,7 +140,10 @@ private slots:
 
     void on_tasksView_doubleClicked(const QModelIndex &index);
 
-    void on_treeView_clicked(const QModelIndex &index);
+    void on_task_tabWidget_tabCloseRequested(int index);
+
+
+    /*      LIST BUTTON SLOTS       */
 
     void on_list_save_clicked();
 
@@ -143,8 +166,12 @@ private slots:
     void on_saveItem_clicked();
 
 private:
+    // interface pointer
     Ui::MainWindow *ui;
+
+    // for all model-based views
     QSqlQueryModel *model;
+
     class DBManager *DB;
     class Project *project;
     class ProjectModel *projectModel;
@@ -154,7 +181,10 @@ private:
     class ListModel *listModel;
     class ListItem *item;
 
+    // first tab on every page
     int viewAllTab = 0;
+
+    // second tab on every page
     int createNewTab = 1;
 
     int dashboardPg = 0;

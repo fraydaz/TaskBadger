@@ -6,12 +6,12 @@ List::List()
 }
 void List::create_list(QString l_type)
 {
-    // first check if such a list exists - if so
-    // updateList()
-    // else do this...
     if (l_type == "project")
+        // for project lists
         listDAO->saveList_Proj(oName, oProjectID);
+
     else if (l_type == "task")
+        // for task lists
          listDAO->saveList_Task(oName, oTaskID);
 }
 void List::update_list(QString id)

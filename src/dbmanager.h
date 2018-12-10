@@ -9,26 +9,44 @@
 #include <QString>
 #include <QMessageBox>
 
+/*
+ * This class interacts directly with the
+ * database. It opens the database connection
+ * when the application begins and then
+ * handles all the database queries.
+*/
 class DBManager
 {
 public:
+
     DBManager();
+
+    // closes the database connection
     ~DBManager();
-    QSqlDatabase db;
+
     void connectDB();
+
     bool sqlInsert(QSqlQuery sql);
-    QSqlQuery sqlSelect(QString sql);
-    QSqlQuery sqlExec(QString sql);
-    QSqlQuery sqlSelect(QSqlQuery sql);
+
     void sqlDelete(QString sql);
-    QString sqlCount(QSqlQuery query);
-    void initializeDB();
+
+    QSqlQuery sqlSelect(QString sql);
+    QSqlQuery sqlSelect(QSqlQuery sql);
+
+    // execute other queries
+    QSqlQuery sqlExec(QString sql);
+
 private:
+    QSqlDatabase db;
     QString host;
     QString database;
     QString username;
     QString password;
+
+    // to show error/success
+    // messages when query fails
     QMessageBox errorMsg;
+
     class Exception* exception;
 };
 

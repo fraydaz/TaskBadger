@@ -10,6 +10,9 @@ bool ListDAO::saveList_Proj(QString n, int id)
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare INSERT query and then bind
+    // values to prevent MySQL injection
     query.prepare("INSERT INTO list(name, project_id) "
                        "VALUES(:lName, :lProject)");
     query.bindValue(":lName", n);
@@ -22,6 +25,9 @@ bool ListDAO::saveList_Task(QString n, int id)
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare INSERT query and then bind
+    // values to prevent MySQL injection
     query.prepare("INSERT INTO list(name, task_id) "
                        "VALUES(:lName, :lTask)");
     query.bindValue(":lName", n);
@@ -34,6 +40,9 @@ bool ListDAO::updateList(QString id, QString n)
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare UPDATE query and then bind
+    // values to prevent MySQL injection
     query.prepare("UPDATE list SET name = :lName "
                   "WHERE id = :id");
     query.bindValue(":lName", n);
@@ -42,21 +51,3 @@ bool ListDAO::updateList(QString id, QString n)
     bool saved = Database->sqlInsert(query);
     return saved;
 }
-
-/*bool ListDAO::listExists(QString listName)
-{
-    bool exists;
-
-    QSqlDatabase localdb = QSqlDatabase::database("MyDB");
-    QSqlQuery query = QSqlQuery(localdb);
-    query.prepare("SELECT COUNT(*) AS total FROM list WHERE "
-                  "EXISTS (SELECT * FROM list WHERE"
-                  " name = :lName )");
-    query.bindValue(":lName", listName);
-
-    QString numRows = Database->sqlCount(query);
-    if (numRows == "0")
-        exists = false;
-    else exists = true;
-    return exists;
-}*/

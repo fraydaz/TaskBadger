@@ -4,17 +4,20 @@
 #include <QString>
 #include <QMessageBox>
 
+/*
+ * This class shows dialog boxes
+ * when query is successful or fails
+*/
 class Exception
 {
 public:
     Exception();
     ~Exception();
 
-    void showError(QString msg);
-    void showSuccess(QString msg);
+    void showDialog(QString msg);
 
 private:
-    QMessageBox errorMsg;
+    QMessageBox dialog;
 };
 
 #endif // EXCEPTION_H

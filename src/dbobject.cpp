@@ -2,6 +2,8 @@
 
 DBObject::DBObject()
 {
+    // pointer to database access object
+    // base class
     objectDAO = new ObjectDAO();
 }
 

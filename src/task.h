@@ -7,6 +7,10 @@
 #include "dbobject.h"
 #include <QString>
 
+/*
+ * This class inherits from DBObject
+ * and handles the project tasks
+*/
 class Task : public DBObject
 {
 public:
@@ -14,6 +18,8 @@ public:
 
     void create_task();
     void update_task(QString id);
+
+    // gets name of project when passed the ID
     QString getProjectName(QString id);
 
 private:

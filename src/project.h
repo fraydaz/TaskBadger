@@ -6,6 +6,11 @@
 #include "projectdao.h"
 #include <QString>
 
+/*
+ * This class inherits from DBObject
+ * and handles the projects
+*/
+
 class Project : public DBObject
 {
 public:
@@ -13,13 +18,6 @@ public:
 
     void create_project();
     void update_project(QString id);
-
-    // Pages To Be Added
-    void add_task();
-    void add_list();
-    void view_tasks();
-    void view_lists();
-
 
 private:
     class ProjectDAO* projectDAO;

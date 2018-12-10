@@ -11,6 +11,9 @@ bool TaskDAO::saveTask(QString n, QString d, QString p,
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare INSERT query and then bind
+    // values to prevent MySQL injection
     query.prepare("INSERT INTO task(name, description, priority, "
                       "due_date, statusID, projectID) "
                        "VALUES(:tName, :tDetails, :tPriority, "
@@ -30,6 +33,9 @@ bool TaskDAO::updateTask(QString id, QString n, QString d, QString p,
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare UPDATE query and then bind
+    // values to prevent MySQL injection
     query.prepare("UPDATE task SET name = :tName, description = :tDetails, "
                   "priority = :tPriority, due_date = :tDue, statusID = :tStatus "
                   " WHERE id = :id");

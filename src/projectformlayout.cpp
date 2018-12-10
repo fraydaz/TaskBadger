@@ -9,35 +9,50 @@ ProjectFormLayout::ProjectFormLayout()
 }
 QVBoxLayout* ProjectFormLayout::setupUi()
 {
+    // format page in a vertical layout
     vLayout = new QVBoxLayout();
     vLayout->setSpacing(6);
     vLayout->setContentsMargins(11, 11, 11, 11);
     vLayout->setObjectName(QStringLiteral("vLayout"));
 
-    // project name fields & layout
+    // horizontal layout for project name
     projLayout = new QHBoxLayout();
     projLayout->setSpacing(6);
     projLayout->setObjectName(QStringLiteral("projLayout"));
+
+    // project name label
     oName = new QLabel();
     oName->setObjectName(QStringLiteral("oName"));
     projLayout->addWidget(oName);
+
+    // project name line edit
     objName = new QLineEdit();
     objName->setObjectName(QStringLiteral("objName"));
     projLayout->addWidget(objName);
     vLayout->addLayout(projLayout);
 
-    // project number fields & layout
+    // horizontal spacer between project name and grid fields
+    gridSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    vLayout->addItem(gridSpacer);
+
+    // form layout for all fields besides
+    // project name, id and description
     formLayout = new QFormLayout();
     formLayout->setSpacing(6);
     formLayout->setObjectName(QStringLiteral("formLayout"));
+
+    // horizontal layout for project ID
     projIDLayout = new QHBoxLayout();
     projIDLayout->setSpacing(6);
     projIDLayout->setObjectName(QStringLiteral("projIDLayout"));
+
+    // project ID label
     oID = new QLabel();
     oID->setObjectName(QStringLiteral("oID"));
     oID->setMinimumSize(QSize(68, 0));
     projIDLayout->addWidget(oID);
 
+    // project ID line edit - read only
     objID = new QLineEdit();
     objID->setObjectName(QStringLiteral("objID"));
     objID->setMaximumSize(QSize(100, 16777215));
@@ -47,10 +62,17 @@ QVBoxLayout* ProjectFormLayout::setupUi()
     projIDLayout->addWidget(objID);
     formLayout->setLayout(0, QFormLayout::LabelRole, projIDLayout);
 
-    // priority fields & layout
+    // grid layout for form layout and project ID
     gridLayout = new QGridLayout();
     gridLayout->setSpacing(6);
     gridLayout->setObjectName(QStringLiteral("gridLayout"));
+
+    // project priority label
+    oPriority = new QLabel();
+    oPriority->setObjectName(QStringLiteral("oPriority"));
+    gridLayout->addWidget(oPriority, 2, 0, 1, 1);
+
+    // project priority combobox
     objPriority = new QComboBox();
     objPriority->addItem(QString());
     objPriority->addItem(QString());
@@ -60,49 +82,54 @@ QVBoxLayout* ProjectFormLayout::setupUi()
     objPriority->setObjectName(QStringLiteral("objPriority"));
     gridLayout->addWidget(objPriority, 2, 1, 1, 2);
 
-    // due date field & layout
+    // project due date label
     oDue = new QLabel();
     oDue->setObjectName(QStringLiteral("oDue"));
     gridLayout->addWidget(oDue, 2, 6, 1, 1);
+
+    // project due date date picker
     objDue = new QDateEdit();
     objDue->setObjectName(QStringLiteral("objDue"));
     objDue->setCalendarPopup(true);
     gridLayout->addWidget(objDue, 2, 7, 1, 2);
 
-    // priority field & layout
-    oPriority = new QLabel();
-    oPriority->setObjectName(QStringLiteral("oPriority"));
-    gridLayout->addWidget(oPriority, 2, 0, 1, 1);
-
-    // status field & layout
+    // project status label
     oStatus = new QLabel();
     oStatus->setObjectName(QStringLiteral("oStatus"));
     gridLayout->addWidget(oStatus, 0, 3, 1, 1);
+
+    // project status combobox
     objStatus = new QComboBox();
     objStatus->setObjectName(QStringLiteral("objStatus"));
     gridLayout->addWidget(objStatus, 0, 4, 1, 2);
 
-    // category field & layout
+    // project category label
     oCategory = new QLabel();
     oCategory->setObjectName(QStringLiteral("oCategory"));
     gridLayout->addWidget(oCategory, 0, 6, 1, 1);
+
+    // project category combobox
     objCategory = new QComboBox();
     objCategory->setObjectName(QStringLiteral("objCategory"));
     gridLayout->addWidget(objCategory, 0, 7, 1, 2);
 
-    // cost field & layout
+    // project cost label
     oCost = new QLabel();
     oCost->setObjectName(QStringLiteral("oCost"));
     gridLayout->addWidget(oCost, 2, 3, 1, 1);
+
+    // project cost spinbox
     objCost = new QDoubleSpinBox();
     objCost->setObjectName(QStringLiteral("objCost"));
     objCost->setMaximum(1e+6);
     gridLayout->addWidget(objCost, 2, 4, 1, 2);
 
-    // date created field & layout
+    // project date created label
     oCreated = new QLabel();
     oCreated->setObjectName(QStringLiteral("oCreated"));
     gridLayout->addWidget(oCreated, 0, 0, 1, 1);
+
+    // project date created date picker - read only
     objCreated = new QDateEdit();
     objCreated->setObjectName(QStringLiteral("objCreated"));
     objCreated->setMaximumSize(QSize(16777215, 16777215));
@@ -112,35 +139,49 @@ QVBoxLayout* ProjectFormLayout::setupUi()
     objCreated->setCalendarPopup(true);
     gridLayout->addWidget(objCreated, 0, 1, 1, 2);
 
+    // add grid layout to form layout
     formLayout->setLayout(0, QFormLayout::FieldRole, gridLayout);
+
+    // add form layout to page vertical layout
     vLayout->addLayout(formLayout);
 
-    // description field & layout
+    // horizontal spacer between grid fields and description
+    horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    vLayout->addItem(horizontalSpacer);
+
+    // horizontal layout for project description
     detailsLayout = new QHBoxLayout();
     detailsLayout->setSpacing(6);
     detailsLayout->setObjectName(QStringLiteral("detailsLayout"));
+
+    // project description label
     oDescription = new QLabel();
     oDescription->setObjectName(QStringLiteral("oDescription"));
     detailsLayout->addWidget(oDescription);
+
+    // project description textbox
     objDescription = new QTextEdit();
     objDescription->setObjectName(QStringLiteral("objDescription"));
     detailsLayout->addWidget(objDescription);
 
+    // add description layout to page vertical layout
     vLayout->addLayout(detailsLayout);
 
-    // save & cancel buttons & layout
+    // horizontal layout for project save/cancel buttons
     buttonsLayout = new QHBoxLayout();
     buttonsLayout->setSpacing(6);
     buttonsLayout->setObjectName(QStringLiteral("buttonsLayout"));
     horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     buttonsLayout->addItem(horizontalSpacer);
 
+    // project save button
     objSave = new QPushButton();
     objSave->setObjectName(QStringLiteral("objSave"));
     objSave->setFont(font);
     objSave->setIcon(saveIcon);
     buttonsLayout->addWidget(objSave);
 
+    // project cancel button
     objCancel = new QPushButton();
     objCancel->setObjectName(QStringLiteral("objCancel"));
     objCancel->setFont(font);
@@ -148,6 +189,7 @@ QVBoxLayout* ProjectFormLayout::setupUi()
     buttonsLayout->addWidget(objCancel);
     vLayout->addLayout(buttonsLayout);
 
+    // set buddies for labels and their fields
     oName->setBuddy(objName);
     oID->setBuddy(objID);
     oDue->setBuddy(objDue);
@@ -163,14 +205,9 @@ QVBoxLayout* ProjectFormLayout::setupUi()
 }
 void ProjectFormLayout::retranslateUi()
 {
+    // set text for the form labels
     oName->setText("Project Name:");
     oID->setText("Project #:");
-    objPriority->setItemText(0, "Normal");
-    objPriority->setItemText(1, "High");
-    objPriority->setItemText(2, "Highest");
-    objPriority->setItemText(3, "Low");
-    objPriority->setItemText(4, "Lowest");
-
     oDue->setText("Due Date:");
     objDue->setDisplayFormat("MM/dd/yyyy");
     oPriority->setText("Priority:");
@@ -178,58 +215,39 @@ void ProjectFormLayout::retranslateUi()
     oCategory->setText("Category:");
     oCost->setText("Total Cost:");
     oCreated->setText("Date Created:");
-    objCreated->setDisplayFormat("MM/dd/yyyy");
     oDescription->setText("Description:");
-    objSave->setText("Save");
-    objCancel->setText("Cancel");
 
+    // setup priority dropdown menu
+    objPriority->setItemText(0, "Normal");
+    objPriority->setItemText(1, "High");
+    objPriority->setItemText(2, "Highest");
+    objPriority->setItemText(3, "Low");
+    objPriority->setItemText(4, "Lowest");
+
+    // format date pickers
+    objCreated->setDisplayFormat("MM/dd/yyyy");
     objCreated->setDate(QDate::currentDate());
     objDue->setDate(QDate::currentDate());
 
+    // set text for buttons
+    objSave->setText("Save");
+    objCancel->setText("Cancel");
+
+    // setup category combobox
     model = projModel->getComboBox("category", "name");
     objCategory->setModel(model);
 
+    // setup status combobox
     model = projModel->getComboBox("status", "id");
     objStatus->setModel(model);
 
+    // connect signals when user click buttons to their functions
     QObject::connect(objSave, SIGNAL(clicked()), this, SLOT(saveObject()));
     QObject::connect(objCancel, SIGNAL(clicked()), this, SLOT(cancelObject()));
-
-    /*QWidget::setTabOrder(treeView, tableView);
-    QWidget::setTabOrder(tableView, createProject);
-    QWidget::setTabOrder(createProject, upcomingDeadlines);
-    QWidget::setTabOrder(upcomingDeadlines, urgentProjects);
-    QWidget::setTabOrder(urgentProjects, tabWidget);
-    QWidget::setTabOrder(tabWidget, projectsView);
-    QWidget::setTabOrder(projectsView, editProj);
-    QWidget::setTabOrder(editProj, newProj);
-    QWidget::setTabOrder(newProj, deleteProj);
-    QWidget::setTabOrder(deleteProj, searchProj);
-    QWidget::setTabOrder(searchProj, name);
-    QWidget::setTabOrder(name, num);
-    QWidget::setTabOrder(num, created);
-    QWidget::setTabOrder(created, status);
-    QWidget::setTabOrder(status, category);
-    QWidget::setTabOrder(category, priority);
-    QWidget::setTabOrder(priority, cost);
-    QWidget::setTabOrder(cost, due);
-    QWidget::setTabOrder(due, description);
-    QWidget::setTabOrder(description, ProjSave);
-    QWidget::setTabOrder(ProjSave, ProjCancel);
-    QWidget::setTabOrder(ProjCancel, projName);*/
-   /* QWidget::setTabOrder(projName, id);
-    QWidget::setTabOrder(id, objCreated);
-    QWidget::setTabOrder(objCreated, objStatus);
-    QWidget::setTabOrder(objStatus, objCategory);
-    QWidget::setTabOrder(objCategory, objPriority);
-    QWidget::setTabOrder(objPriority, objCost);
-    QWidget::setTabOrder(objCost, objDue);
-    QWidget::setTabOrder(objDue, objDescription);
-    QWidget::setTabOrder(objDescription, objSave);
-    QWidget::setTabOrder(objSave, objCancel);*/
 }
 void ProjectFormLayout::saveObject()
 {
+    // save project in database
     project->setName(objName->text());
     project->setDescription(objDescription->toPlainText());
     project->setPriority(objPriority->currentText());

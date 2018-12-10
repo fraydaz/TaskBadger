@@ -12,6 +12,8 @@ bool ItemDAO::saveItem(QString n, int id)
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
 
+    // prepare INSERT query and then bind
+    // values to prevent MySQL injection
     query.prepare("INSERT INTO item(name, list_id) "
                        "VALUES(:lName, :lItem)");
     query.bindValue(":lName", n);
@@ -24,6 +26,9 @@ bool ItemDAO::updateItem(QString id, QString n)
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare UPDATE query and then bind
+    // values to prevent MySQL injection
     query.prepare("UPDATE item SET name = :iName WHERE id = :id");
     query.bindValue(":iName", n);
     query.bindValue(":id", id);

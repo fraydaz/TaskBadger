@@ -6,6 +6,11 @@
 #include <QString>
 #include <QDateTime>
 
+/*
+ * This class acts as an interface between
+ * projects and the database manager class
+*/
+
 class ProjectDAO : public ObjectDAO
 {
 public:

@@ -11,6 +11,9 @@ bool ProjectDAO::saveProject(QString n, QString d, QString p, QString c,
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare INSERT query and then bind
+    // values to prevent MySQL injection
     query.prepare("INSERT INTO project(name, description, priority, "
                       "total_cost, date_created, due_date, statusID, categoryID) "
                        "VALUES(:pName, :pDetails, :pPriority, :pCost, :pDate, "
@@ -32,6 +35,9 @@ bool ProjectDAO::updateProject(QString id, QString n, QString d, QString p,
 {
     QSqlDatabase localdb = QSqlDatabase::database("MyDB");
     QSqlQuery query = QSqlQuery(localdb);
+
+    // prepare UPDATE query and then bind
+    // values to prevent MySQL injection
     query.prepare("UPDATE project SET name = :pName, description = :pDetails, "
                   "priority = :pPriority, total_cost = :pCost, due_date = :pDue, "
                   "statusID = :pStatus, categoryID = :pCat WHERE id = :id");

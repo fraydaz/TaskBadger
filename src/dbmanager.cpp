@@ -8,16 +8,20 @@ DBManager::DBManager()
     connectDB();
     exception = new Exception();
 }
+
 DBManager::~DBManager()
 {
     db.close();
 }
+
 void DBManager::connectDB()
 {
+    // check if database is already open
     if (QSqlDatabase::contains("MyDB"))
         db = QSqlDatabase::database("MyDB");
     else
     {
+        // if not connect to database
         db = QSqlDatabase::addDatabase("QMYSQL", "MyDB");
         db.setHostName("localhost");
         db.setDatabaseName("task_badger");
@@ -26,21 +30,31 @@ void DBManager::connectDB()
         db.setPort(3306);
 
         if (!db.open())
-            exception->showError(db.lastError().text());
+            exception->showDialog(db.lastError().text());
     }
 }
+// run 'SELECT' queries when passed a string
 QSqlQuery DBManager::sqlSelect(QString sql)
 {
+    // perform query on the open database
     QSqlQuery query = QSqlQuery(db);
+
+    // prepare query
     query.prepare(sql);
 
     if(!query.exec())
     {
-        exception->showError(query.lastError().text());
+        // show error message with details from MySQL
+        exception->showDialog(query.lastError().text());
+
+        // show query that was run for debugging
         qDebug() << "Query Failed: " << query.lastQuery();
     }
     else
+        // only shows in application output, not for user
         qDebug() << "Query Successful: " << query.lastQuery();
+
+    // return results from the query
     return query;
 }
 QSqlQuery DBManager::sqlExec(QString sql)
@@ -48,12 +62,14 @@ QSqlQuery DBManager::sqlExec(QString sql)
     QSqlQuery query = QSqlQuery(db);
     if(!query.exec(sql))
     {
-        exception->showError(query.lastError().text());
+        exception->showDialog(query.lastError().text());
         qDebug() << "Query Failed: " << query.lastQuery();
     }
     else
     {
         qDebug() << "Query Successful: " << query.lastQuery();
+
+        // for debugging only
         int i = 0;
             while (query.next()) {
                 qDebug() << query.value(i++);
@@ -64,7 +80,7 @@ QSqlQuery DBManager::sqlExec(QString sql)
 QSqlQuery DBManager::sqlSelect(QSqlQuery query)
 {
     if(!query.exec())
-        exception->showError(query.lastError().text());
+        exception->showDialog(query.lastError().text());
     else
         qDebug() << "Query Successful: " << query.lastQuery();
     return query;
@@ -72,15 +88,17 @@ QSqlQuery DBManager::sqlSelect(QSqlQuery query)
 bool DBManager::sqlInsert(QSqlQuery query)
 {
     bool success = false;
+
+    // run the insert query
     success = query.exec();
 
     if(!success)
     {
         qDebug() << "Query Failed: " << query.lastQuery();
-        exception->showError(query.lastError().text());
+        exception->showDialog(query.lastError().text());
     }
     else
-        exception->showSuccess("Successfully Saved");
+        exception->showDialog("Successfully Saved");
     return success;
 }
  void DBManager::sqlDelete(QString sql)
@@ -89,20 +107,7 @@ bool DBManager::sqlInsert(QSqlQuery query)
      query.prepare(sql);
 
      if(!query.exec())
-         exception->showError(query.lastError().text());
+         exception->showDialog(query.lastError().text());
      else
          qDebug() << "Record Deleted: " << query.lastQuery();
  }
-/*QString DBManager::sqlCount(QSqlQuery query)
-{
-    QString total = "0";
-    if(!query.exec())
-        exception->showError(query.lastError().text());
-    else
-    {
-        total = query.value(0).toString();
-        qDebug() << "Total is: " << total;
-    }
-    qDebug() << "Query Successful: " << query.lastQuery();
-    return total;
-}*/

@@ -5,11 +5,16 @@
 #include <QDateTime>
 #include "objectdao.h"
 
+/*
+ * This is the base class for all objects
+ * with a database table in this project.
+*/
 class DBObject
 {
 public:
     DBObject();
 
+    // getter functions
     virtual int getId() const;
     virtual QString getName() const;
     virtual QString getDescription() const;
@@ -37,13 +42,8 @@ public:
     virtual void setTaskID(const QString& taskVal);
     virtual void setListID(const QString& listVal);
 
+    // delete record from database
     virtual void delete_object(QString table, QString id);
-
-    // Virtual functions
-  /*  virtual void add_task();
-    virtual void add_list();
-    virtual void view_tasks();
-    virtual void view_lists();*/
 
 protected:
     class ObjectDAO* objectDAO;

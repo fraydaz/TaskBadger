@@ -90,36 +90,36 @@ public:
     QPushButton *deleteProj;
     QWidget *newProject;
     QGridLayout *gridLayout_5;
-    QHBoxLayout *horizontalLayout_9;
-    QLabel *ProjName;
-    QLineEdit *name;
     QSpacerItem *horizontalSpacer_6;
+    QHBoxLayout *horizontalLayout_11;
+    QLabel *ProjDescription;
+    QTextEdit *description;
+    QSpacerItem *horizontalSpacer_12;
     QFormLayout *formLayout_2;
     QHBoxLayout *horizontalLayout_10;
     QLabel *ProjNum;
     QLineEdit *num;
     QGridLayout *gridLayout_2;
-    QComboBox *priority;
+    QDoubleSpinBox *cost;
+    QComboBox *category;
     QLabel *ProjDue;
     QDateEdit *due;
     QLabel *ProjPriority;
-    QLabel *ProjStatus;
-    QComboBox *status;
-    QLabel *ProjCat;
-    QComboBox *category;
-    QLabel *ProjCost;
-    QDoubleSpinBox *cost;
-    QLabel *ProjDateCreate;
     QDateEdit *created;
-    QSpacerItem *horizontalSpacer_11;
-    QHBoxLayout *horizontalLayout_11;
-    QLabel *ProjDescription;
-    QTextEdit *description;
-    QSpacerItem *horizontalSpacer_12;
+    QComboBox *status;
+    QLabel *ProjStatus;
+    QComboBox *priority;
+    QLabel *ProjCost;
+    QLabel *ProjCat;
+    QLabel *ProjDateCreate;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *ProjName;
+    QLineEdit *name;
     QHBoxLayout *horizontalLayout_12;
     QSpacerItem *horizontalSpacer_8;
     QPushButton *ProjSave;
     QPushButton *ProjCancel;
+    QSpacerItem *horizontalSpacer_11;
     QWidget *page_3;
     QGridLayout *gridLayout_7;
     QVBoxLayout *verticalLayout;
@@ -227,7 +227,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(879, 637);
+        MainWindow->resize(892, 641);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Images/taskbadgericon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -497,25 +497,29 @@ public:
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
-        horizontalLayout_9 = new QHBoxLayout();
-        horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        ProjName = new QLabel(newProject);
-        ProjName->setObjectName(QStringLiteral("ProjName"));
-
-        horizontalLayout_9->addWidget(ProjName);
-
-        name = new QLineEdit(newProject);
-        name->setObjectName(QStringLiteral("name"));
-
-        horizontalLayout_9->addWidget(name);
-
-
-        gridLayout_5->addLayout(horizontalLayout_9, 0, 0, 1, 1);
-
-        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_6 = new QSpacerItem(829, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_5->addItem(horizontalSpacer_6, 1, 0, 1, 1);
+
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+        ProjDescription = new QLabel(newProject);
+        ProjDescription->setObjectName(QStringLiteral("ProjDescription"));
+
+        horizontalLayout_11->addWidget(ProjDescription);
+
+        description = new QTextEdit(newProject);
+        description->setObjectName(QStringLiteral("description"));
+
+        horizontalLayout_11->addWidget(description);
+
+
+        gridLayout_5->addLayout(horizontalLayout_11, 4, 0, 1, 1);
+
+        horizontalSpacer_12 = new QSpacerItem(829, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_5->addItem(horizontalSpacer_12, 5, 0, 1, 1);
 
         formLayout_2 = new QFormLayout();
         formLayout_2->setSpacing(6);
@@ -544,15 +548,16 @@ public:
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setSpacing(6);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        priority = new QComboBox(newProject);
-        priority->addItem(QString());
-        priority->addItem(QString());
-        priority->addItem(QString());
-        priority->addItem(QString());
-        priority->addItem(QString());
-        priority->setObjectName(QStringLiteral("priority"));
+        cost = new QDoubleSpinBox(newProject);
+        cost->setObjectName(QStringLiteral("cost"));
+        cost->setMaximum(1e+6);
 
-        gridLayout_2->addWidget(priority, 2, 1, 1, 2);
+        gridLayout_2->addWidget(cost, 2, 4, 1, 2);
+
+        category = new QComboBox(newProject);
+        category->setObjectName(QStringLiteral("category"));
+
+        gridLayout_2->addWidget(category, 0, 7, 1, 2);
 
         ProjDue = new QLabel(newProject);
         ProjDue->setObjectName(QStringLiteral("ProjDue"));
@@ -570,42 +575,6 @@ public:
 
         gridLayout_2->addWidget(ProjPriority, 2, 0, 1, 1);
 
-        ProjStatus = new QLabel(newProject);
-        ProjStatus->setObjectName(QStringLiteral("ProjStatus"));
-
-        gridLayout_2->addWidget(ProjStatus, 0, 3, 1, 1);
-
-        status = new QComboBox(newProject);
-        status->setObjectName(QStringLiteral("status"));
-
-        gridLayout_2->addWidget(status, 0, 4, 1, 2);
-
-        ProjCat = new QLabel(newProject);
-        ProjCat->setObjectName(QStringLiteral("ProjCat"));
-
-        gridLayout_2->addWidget(ProjCat, 0, 6, 1, 1);
-
-        category = new QComboBox(newProject);
-        category->setObjectName(QStringLiteral("category"));
-
-        gridLayout_2->addWidget(category, 0, 7, 1, 2);
-
-        ProjCost = new QLabel(newProject);
-        ProjCost->setObjectName(QStringLiteral("ProjCost"));
-
-        gridLayout_2->addWidget(ProjCost, 2, 3, 1, 1);
-
-        cost = new QDoubleSpinBox(newProject);
-        cost->setObjectName(QStringLiteral("cost"));
-        cost->setMaximum(1e+6);
-
-        gridLayout_2->addWidget(cost, 2, 4, 1, 2);
-
-        ProjDateCreate = new QLabel(newProject);
-        ProjDateCreate->setObjectName(QStringLiteral("ProjDateCreate"));
-
-        gridLayout_2->addWidget(ProjDateCreate, 0, 0, 1, 1);
-
         created = new QDateEdit(newProject);
         created->setObjectName(QStringLiteral("created"));
         created->setMaximumSize(QSize(16777215, 16777215));
@@ -616,35 +585,62 @@ public:
 
         gridLayout_2->addWidget(created, 0, 1, 1, 2);
 
+        status = new QComboBox(newProject);
+        status->setObjectName(QStringLiteral("status"));
+
+        gridLayout_2->addWidget(status, 0, 4, 1, 2);
+
+        ProjStatus = new QLabel(newProject);
+        ProjStatus->setObjectName(QStringLiteral("ProjStatus"));
+
+        gridLayout_2->addWidget(ProjStatus, 0, 3, 1, 1);
+
+        priority = new QComboBox(newProject);
+        priority->addItem(QString());
+        priority->addItem(QString());
+        priority->addItem(QString());
+        priority->addItem(QString());
+        priority->addItem(QString());
+        priority->setObjectName(QStringLiteral("priority"));
+
+        gridLayout_2->addWidget(priority, 2, 1, 1, 2);
+
+        ProjCost = new QLabel(newProject);
+        ProjCost->setObjectName(QStringLiteral("ProjCost"));
+
+        gridLayout_2->addWidget(ProjCost, 2, 3, 1, 1);
+
+        ProjCat = new QLabel(newProject);
+        ProjCat->setObjectName(QStringLiteral("ProjCat"));
+
+        gridLayout_2->addWidget(ProjCat, 0, 6, 1, 1);
+
+        ProjDateCreate = new QLabel(newProject);
+        ProjDateCreate->setObjectName(QStringLiteral("ProjDateCreate"));
+
+        gridLayout_2->addWidget(ProjDateCreate, 0, 0, 1, 1);
+
 
         formLayout_2->setLayout(0, QFormLayout::FieldRole, gridLayout_2);
 
 
         gridLayout_5->addLayout(formLayout_2, 2, 0, 1, 1);
 
-        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        ProjName = new QLabel(newProject);
+        ProjName->setObjectName(QStringLiteral("ProjName"));
 
-        gridLayout_5->addItem(horizontalSpacer_11, 3, 0, 1, 1);
+        horizontalLayout_9->addWidget(ProjName);
 
-        horizontalLayout_11 = new QHBoxLayout();
-        horizontalLayout_11->setSpacing(6);
-        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
-        ProjDescription = new QLabel(newProject);
-        ProjDescription->setObjectName(QStringLiteral("ProjDescription"));
+        name = new QLineEdit(newProject);
+        name->setObjectName(QStringLiteral("name"));
 
-        horizontalLayout_11->addWidget(ProjDescription);
-
-        description = new QTextEdit(newProject);
-        description->setObjectName(QStringLiteral("description"));
-
-        horizontalLayout_11->addWidget(description);
+        horizontalLayout_9->addWidget(name);
 
 
-        gridLayout_5->addLayout(horizontalLayout_11, 4, 0, 1, 1);
-
-        horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_5->addItem(horizontalSpacer_12, 5, 0, 1, 1);
+        gridLayout_5->addLayout(horizontalLayout_9, 0, 0, 1, 1);
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setSpacing(6);
@@ -671,6 +667,10 @@ public:
 
 
         gridLayout_5->addLayout(horizontalLayout_12, 6, 0, 1, 1);
+
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_5->addItem(horizontalSpacer_11, 3, 0, 1, 1);
 
         project_tabWidget->addTab(newProject, QString());
 
@@ -1256,20 +1256,20 @@ public:
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 879, 21));
+        menuBar->setGeometry(QRect(0, 0, 892, 21));
         menuTaskBadger = new QMenu(menuBar);
         menuTaskBadger->setObjectName(QStringLiteral("menuTaskBadger"));
         MainWindow->setMenuBar(menuBar);
 #ifndef QT_NO_SHORTCUT
-        ProjName->setBuddy(name);
+        ProjDescription->setBuddy(description);
         ProjNum->setBuddy(num);
         ProjDue->setBuddy(due);
         ProjPriority->setBuddy(priority);
         ProjStatus->setBuddy(status);
-        ProjCat->setBuddy(category);
         ProjCost->setBuddy(cost);
+        ProjCat->setBuddy(category);
         ProjDateCreate->setBuddy(created);
-        ProjDescription->setBuddy(description);
+        ProjName->setBuddy(name);
         taskName->setBuddy(name);
         taskProject->setBuddy(t_project);
         taskNum->setBuddy(num);
@@ -1333,7 +1333,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(2);
         project_tabWidget->setCurrentIndex(1);
         task_tabWidget->setCurrentIndex(1);
         list_tabWidget->setCurrentIndex(1);
@@ -1363,24 +1363,24 @@ public:
         editProj->setText(QApplication::translate("MainWindow", "Edit", nullptr));
         deleteProj->setText(QApplication::translate("MainWindow", "Delete", nullptr));
         project_tabWidget->setTabText(project_tabWidget->indexOf(projects), QApplication::translate("MainWindow", "Projects", nullptr));
-        ProjName->setText(QApplication::translate("MainWindow", "Project Name:", nullptr));
-        name->setText(QApplication::translate("MainWindow", "New Project", nullptr));
+        ProjDescription->setText(QApplication::translate("MainWindow", "Description:", nullptr));
         ProjNum->setText(QApplication::translate("MainWindow", "Project #:", nullptr));
+        ProjDue->setText(QApplication::translate("MainWindow", "Due Date:", nullptr));
+        due->setDisplayFormat(QApplication::translate("MainWindow", "MM/dd/yyyy", nullptr));
+        ProjPriority->setText(QApplication::translate("MainWindow", "Priority:", nullptr));
+        created->setDisplayFormat(QApplication::translate("MainWindow", "MM/dd/yyyy", nullptr));
+        ProjStatus->setText(QApplication::translate("MainWindow", "Status:", nullptr));
         priority->setItemText(0, QApplication::translate("MainWindow", "Normal", nullptr));
         priority->setItemText(1, QApplication::translate("MainWindow", "High", nullptr));
         priority->setItemText(2, QApplication::translate("MainWindow", "Highest", nullptr));
         priority->setItemText(3, QApplication::translate("MainWindow", "Low", nullptr));
         priority->setItemText(4, QApplication::translate("MainWindow", "Lowest", nullptr));
 
-        ProjDue->setText(QApplication::translate("MainWindow", "Due Date:", nullptr));
-        due->setDisplayFormat(QApplication::translate("MainWindow", "MM/dd/yyyy", nullptr));
-        ProjPriority->setText(QApplication::translate("MainWindow", "Priority:", nullptr));
-        ProjStatus->setText(QApplication::translate("MainWindow", "Status:", nullptr));
-        ProjCat->setText(QApplication::translate("MainWindow", "Category:", nullptr));
         ProjCost->setText(QApplication::translate("MainWindow", "Total Cost:", nullptr));
+        ProjCat->setText(QApplication::translate("MainWindow", "Category:", nullptr));
         ProjDateCreate->setText(QApplication::translate("MainWindow", "Date Created:", nullptr));
-        created->setDisplayFormat(QApplication::translate("MainWindow", "MM/dd/yyyy", nullptr));
-        ProjDescription->setText(QApplication::translate("MainWindow", "Description:", nullptr));
+        ProjName->setText(QApplication::translate("MainWindow", "Project Name:", nullptr));
+        name->setText(QApplication::translate("MainWindow", "New Project", nullptr));
         ProjSave->setText(QApplication::translate("MainWindow", "Save", nullptr));
         ProjCancel->setText(QApplication::translate("MainWindow", "Cancel", nullptr));
         project_tabWidget->setTabText(project_tabWidget->indexOf(newProject), QApplication::translate("MainWindow", "New Project", nullptr));

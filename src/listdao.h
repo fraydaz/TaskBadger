@@ -5,14 +5,18 @@
 #include "objectdao.h"
 #include <QString>
 
+/*
+ * This class acts as an interface between
+ * lists and the database manager class
+*/
 class ListDAO : public ObjectDAO
 {
 public:
     ListDAO();
+
     bool saveList_Proj(QString n, int id);
     bool saveList_Task(QString n, int id);
     bool updateList(QString id, QString n);
-    bool listExists(QString listName);
 
 private:
     class DBManager *Database;

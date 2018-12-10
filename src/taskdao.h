@@ -6,6 +6,11 @@
 #include <QString>
 #include <QDateTime>
 
+/*
+ * This class acts as an interface between
+ * tasks and the database manager class
+*/
+
 class TaskDAO : public ObjectDAO
 {
 public:

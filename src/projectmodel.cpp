@@ -9,7 +9,11 @@ QVBoxLayout* ProjectModel::setLayout(QString id)
     QVBoxLayout *projLayout = new QVBoxLayout;
     class ProjectFormLayout *newLayout;
     newLayout = new ProjectFormLayout();
+
+    // get layout for new tab
     projLayout = newLayout->setupUi();
+
+    // put project info in the form fields
     newLayout->objID->setText(id);
     newLayout->objID->setStyleSheet("");
     newLayout->objName->setText(projectDAO->getObjectInfo(id, "name", "project"));
